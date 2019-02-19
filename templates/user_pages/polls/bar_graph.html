@@ -1,0 +1,10 @@
+
+<dl style="width: 520px;">
+{% for choice in choices_list %}
+<dt>{{choice.choice.choice_name}} {% if choice.voted %}(You have currently voted for this){% endif %} </dt>
+<dd>
+<a href="/poll/{{choice.choice.poll.id}}/{{choice.choice.id}}/select/" class="btn choiceVoteButton"{% if choice.voted %}style="opacity:0.3;"{% endif %}>Vote</a>
+<span class="barWrap" ><div class="bar" style="width: 0%; " data-percent="{{choice.percentage}}"  >{{choice.choice.votes_number}}</div></span>
+</dd>
+{% endfor %}
+</dl>

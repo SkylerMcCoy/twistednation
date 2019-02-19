@@ -1,0 +1,15 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+<div class="pageContent" >
+  <h3>{{blog.title}}
+  {% if blog.member == user.members %}
+    <span style="font-weight:normal; font-size: 14px;" > (<a href="/blog/{{blog.id}}/edit/">Edit</a>)</span>
+  {% endif %}
+  </h3>
+  
+  <div>{{blog.content|safe}}</div>
+</div>
+{%endblock%}

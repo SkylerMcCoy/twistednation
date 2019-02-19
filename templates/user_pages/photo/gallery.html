@@ -1,0 +1,118 @@
+{% extends "user_pages/common_elements/base_user.html" %} 
+{%block title%} 
+{{user}}'s Home 
+{%endblock%} 
+{%block page_content%}
+
+		<div id="subNav">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="/albumlist/" class="subNavActive" class="active">Photos</a></li>
+				<li><a href="/video/">Videos</a></li>
+			</ul>
+
+		</div>
+		<!--end subNav-->
+		<!--##individual contents##-->
+		<div class="tab-content">
+			<div class="tab-pane active" id="photoTab">
+				<h3>Create new album</h3>
+				<form action="/albumlist/" method="post" enctype="multipart/form-data" class="uploadImage">
+					{% csrf_token %} 
+					
+					{{form.errors}}
+					{{form}}
+					<br/>
+					<h4>Upload your first image to the album</h4>
+					<p>You can add more pictures later</p>
+					Upload Image:
+					{{imageform.file}}
+					<br/>
+					Picture description:<br/>
+					{{imageform.desc}}
+					<br/>
+					<br/>
+					<button type="submit" class="btn">New Album +</button>
+					<br\>
+					<br\>
+				</form>
+
+
+				<!--end galleryTopButtons-->
+
+				<div class="galleryContentBox">
+
+					<h3>Your Photo Albums</h3>
+					<br /> {% if albumlist %} 
+					{% for album in albumlist %}
+							
+					<a href="{% url upload.views.viewalbum album.0.albumid %}">
+					
+					<div class="individualAlbum">
+					<h4>
+								{{album.1.albuma}}
+					</h4>
+						<div class="stack">
+					{%if album.2.photo %}
+							<img
+								src="{{MEDIA_URL}}ups/albumpics/{{album.2.photo}}_thumbnail.jpeg" /><br />
+							<br />
+							{%endif %}
+							
+							<br />
+						</div>
+					</div>
+					</a>
+						{% endfor %} {% else %}
+						<p>No albums available</p>
+						{% endif %}
+						<!--                              
+                                
+                            </div><!--end galleryContent-->
+
+
+					
+
+
+				</div>
+				<!--end galleryContent-->
+
+		
+		</div>
+
+
+	</div>
+	<!--end content-->
+	
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"> </script>
+<!-- ##for toggling child li## -->
+<script type="text/javascript">
+
+
+$(function () {
+    $('.reveal').click(function() {
+        $(this).children('ul').slideToggle();
+		$(this).toggleClass('revealSwitch');
+	    });
+	
+	
+	
+    $('.reveal a').click(function(event) {
+        event.stopPropagation();
+    });
+});
+
+</script>
+
+{%endblock%}
+<!--##for toggling show/hide##-->
+
+
+<!-- for tabs--->
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
+</body>
+</html>

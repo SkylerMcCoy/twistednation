@@ -1,0 +1,40 @@
+{%extends "user_pages/home/base_home.html"%}
+{%block home_content%}
+ <div class="tab-pane active" id="news">
+                      	<p class="update" class="updateActive"  class="active"><img src="{{STATIC_URL}}images/updateSatusIcon_21.png"  />Update Status</p>
+                       <form action="." method="POST"> 
+                           {%csrf_token%}
+                            {%for field in post_add_form%}
+                            {{field}}
+                            {%endfor%}
+                            <br>
+
+                        <div id="buttons">
+                        <!--<a class="btn" href="#"><img src="{{STATIC_URL}}images/addLocIcon_03.png"  />Add Location +</a>-->
+                            <input type="submit" Value="Publish" class="btn btn-right2" >
+                        </div>
+                        </form>
+                        <br /><!--end buttons-->
+                                       
+                                         
+                      {% for each_feed in home_feed %}
+                        {% if each_feed.type = 'POST' %}
+                          {% include "user_pages/common_elements/activities_templates/template_post.html" %}
+                        {% elif each_feed.type = 'ALBUM' %}
+                          {% include "user_pages/common_elements/activities_templates/template_add_album.html" %}
+                        {% elif each_feed.type = 'PETITION' %}
+                          {% include "user_pages/common_elements/activities_templates/template_create_petition.html" %}
+                        {% elif each_feed.type = 'FRIEND' %}
+                          {% if each_feed.owner_member.user != user %}
+                            {% include "user_pages/common_elements/activities_templates/template_friend_added.html" %}
+                          {% endif %}
+                        {% elif each_feed.type = 'DEBATE' %}
+                          {% include "user_pages/common_elements/activities_templates/template_create_debate.html" %}
+                        {% elif each_feed.type = 'POLL' %}
+                          {% include "user_pages/common_elements/activities_templates/template_create_poll.html" %}
+                        {% endif %}
+                      {% endfor %} 
+                                      
+
+                      </div>
+{%endblock%}

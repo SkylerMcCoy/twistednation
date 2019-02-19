@@ -1,0 +1,135 @@
+{% extends "user_pages/common_elements/base_user.html" %} 
+{%block title%} 
+{{user}}'s Home 
+{%endblock%} 
+{%block page_content%}
+<!-- ## Main Content Area## -->
+
+		<div id="subNav">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="/albumlist/" class="subNavActive"
+					class="active">Photos</a></li>
+				<li><a href="/video/">Videos</a></li>
+			</ul>
+
+		</div>
+		<!--end subNav-->
+		<!--##individual contents##-->
+		<div class="tab-content">
+			<div class="tab-pane active" id="photoTab">
+
+				{%load url from future %} 
+				{% if album %}
+				<h3>{{album.name}}</h3>
+				<p>Date created:{{album.timestamp}}</p>
+				<br />
+				{% if album.user.user == user %}
+				<form action="/albumedit/{{ album.id }}" method="post">{% csrf_token %} 
+				Change Album name:
+				<input style="margin-top:5px;" type="text" name="albumname" value="{{album.name}}" />
+				<input style="margin-top:-4px;" type="Submit" value="Submit" class="btn" />
+				</form>
+				{% endif %}
+				{% if pics %} 
+					{% for pic in pics %} 
+				<div class="individualAlbumPics">
+						
+				
+					
+						<a href="/viewpic/{{pic.id}}">
+							<img src="{{MEDIA_URL}}ups/albumpics/{{pic.filename}}_thumbnail.jpeg" /></a>
+						
+					
+				</div>
+					{% endfor %} 
+				{% endif %} 
+				{% if album.user.user == user %}
+				<div id="uploadNew">
+				<h4>Upload new photo</h4>
+				<form action="/albumlist/{{ album.id }}" method="post" enctype="multipart/form-data">{% csrf_token %}
+				 {{form}}<br> 
+				 <input type="Submit" value="Upload" class="btn" />
+				</form>
+				</div>
+				{% endif %}
+				{% else %} 
+				{% if picture %}
+				<div id="pictureBox">
+				<div align="center" >
+					<img src="{{MEDIA_URL}}ups/albumpics/{{picture.filename}}" /><br />
+					<br />
+					<h4>{{picture.desc}}</h4>
+				</div>
+				</div>
+				<br /> <br />
+				<div id="picNavigate"> 
+				
+				<a href="/viewpic/{{prev}}"><img src="{{STATIC_URL}}images/forwardPIcon.png">Previous picture</a>
+				<a href="/viewpic/{{next}}">Next picture<img src="{{STATIC_URL}}images/backPIcon.png"></a>
+				
+				</div>
+				<div id="backDeletePicture">
+				<a href="/albumlist/{{ picture.album_id }}"><img src="{{STATIC_URL}}images/backIcon.png">Back to album</a> 
+				{% if picture.album.user.user == user %}
+				<a href="/deletepic/{{picture.id}}"><img src="{{STATIC_URL}}images/deleteIcon.png">Delete this picture</a>
+				{% endif %}
+				</div> 
+				{% endif %} 
+				{% endif %}
+
+
+
+			</div>
+			<!--end galleryContent-->
+
+
+		</div>
+
+
+
+<!--end content-->
+
+<!--end span10-->
+
+<!-- ##Ad Space## -->
+<!--        <div class="span1">
+        	<div id="adSpace">
+            	<h3>Ad Space</h3>
+            </div><!--end adSpace-->
+<!--        </div><!--end span2-->
+
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"> </script>
+<!-- ##for toggling child li## -->
+<script type="text/javascript">
+
+
+$(function () {
+    $('.reveal').click(function() {
+        $(this).children('ul').slideToggle();
+		$(this).toggleClass('revealSwitch');
+	    });
+	
+	
+	
+    $('.reveal a').click(function(event) {
+        event.stopPropagation();
+    });
+});
+
+</script>
+
+{%endblock%}
+<!--##for toggling show/hide##-->
+
+
+<!-- for tabs--->
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
+</body>
+</html>

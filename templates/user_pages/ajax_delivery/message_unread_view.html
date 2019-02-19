@@ -1,0 +1,5 @@
+{% if messages %}
+	{% for message in messages  %}
+		{% include "user_pages/ajax_delivery/message_after_send.html" %}
+	{% endfor %}
+{%else%}{% endif %}

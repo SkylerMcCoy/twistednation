@@ -1,0 +1,23 @@
+{%extends "user_pages/home/base_home.html"%}
+{%block home_content%}
+ <div class="tab-pane active" id="news">
+                      <h3>Pinned Posts</h3>                   
+    {% for each_feed in home_feed %}
+      {% if each_feed.post_type = 'POST' %}
+        {% include "user_pages/common_elements/activities_templates/template_post.html" %}
+      {% elif each_feed.post_type = 'ALBUM' %}
+        {% include "user_pages/common_elements/activities_templates/template_add_album.html" %}
+      {% elif each_feed.post_type = 'PETITION' %}
+        {% include "user_pages/common_elements/activities_templates/template_create_petition.html" %}
+      {% elif each_feed.post_type = 'DEBATE' %}
+        {% include "user_pages/common_elements/activities_templates/template_create_debate.html" %}
+      {% elif each_feed.type = 'POLL' %}
+        {% include "user_pages/common_elements/activities_templates/template_create_poll.html" %}
+      {% endif %}
+    {% empty %}
+    
+    {% endfor %} 
+                                      
+
+  </div>
+{%endblock%}

@@ -1,0 +1,29 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user}}'s Home
+{%endblock%}
+{%block page_content%}
+{%include "user_pages/common_elements/widget_nav_top_pinpost.html"%}
+                    
+                    <!--##individual contents##-->
+                     <div class="tab-content active">
+                     {%block home_content%}
+                     {%endblock%}
+                      
+                      <div class="tab-pane active" id="pinpost">
+                          <a class="update" class="updateActive" href="#"><img src="{{STATIC_URL}}images/updateSatusIcon_21.png"  />Pinpost</a>
+                            <a class="update" href="#"><img src="{{STATIC_URL}}images/postPhotoIcon_24.png" />Post</a>
+                            <textarea placeholder="Be heard.."></textarea><br />
+                            <div id="buttons">
+                            <a class="btn" href="#"><img src="{{STATIC_URL}}images/addLocIcon_03.png"  />Add Location +</a>
+                            <a class="btn" href="#">Publish</a>
+                            </div><!--end buttons-->
+                      </div>
+
+                             
+                      </div>
+                    </div>
+                   
+                   
+
+{%endblock%}

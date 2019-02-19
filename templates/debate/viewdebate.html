@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>Debate | View debate</title>
+</head>
+<body>
+	{%load url from future %}
+	{% if deb %}
+	<h2>{{deb.topic}}</h2>
+	{%endif%}
+	<h5>Created by:{{deb.created_by}}<br>
+		Date created:{{deb.timestamp}}<br>
+		Privacy:{{deb.privacy}}</h5>
+	<p>Date:{{deb.date}}</p>
+	{% if flag == 0 %}
+	You are not supposed to view this.
+	{% endif %}
+	{% if flag == 1 %}
+	You have invitation to 
+	<a href="participate/{{ deb.id }}">participate in this debate</a>
+	{% endif %}
+	{% if flag == 2 %}
+	You are participating in this debate.
+	{% endif %}
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "user_pages/home/base_home.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+<div class="pageContent">
+    <h3>your Friends</h3>
+    {% for related_member in  friends%}
+         <div class="individualFeed" style="overflow:hidden; display:block !important; width:100%; padding: 5px;">
+            <a href="/profile/{{related_member.user.username}}">
+                <div class="displayPic">
+                    <img src="/pp/{{related_member.photo}}" style="height:100%; width: 100%;" >
+                </div><!--end displayPic-->
+            </a>
+            <p style="margin-left:65px;">
+                <strong><a href="/profile/{{related_member.user.username}}">{{related_member.user.first_name}} {{related_member.user.last_name}}</a></strong>
+{%if related_member.institution%} of <strong>{{related_member.institution}}</strong>{%endif%}
+            (<a href="/friend/delete/?username={{related_member.user.username}}&page=friends"><i>Delete</i></a>)
+            </p>
+            </div>
+    
+       
+    {% endfor %}
+    
+</div>
+{%endblock%}

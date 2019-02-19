@@ -1,0 +1,5 @@
+django-tinymce
+grappelli
+gunicorn
+django-extensions
+twilio

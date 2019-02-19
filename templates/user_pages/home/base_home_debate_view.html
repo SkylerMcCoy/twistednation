@@ -1,0 +1,40 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user}}'s Home
+{%endblock%}
+{%block page_content%}
+{%include "user_pages/common_elements/widget_nav_top_debate.html"%}
+                    
+                    <!--##individual contents##-->
+                     <div class="tab-content">
+                     {%block home_content%}
+                     {%endblock%}
+                      
+  {%load url from future %}
+  {% if deb %}
+  <h2>{{deb.topic}}</h2>
+  
+  <h5>Created by:{{deb.created_by}}<br>
+    Date created:{{deb.timestamp}}<br>
+    </h5>
+  <p>Date:{{deb.date}}</p>
+  {% if flag == 0 %}
+  You are not supposed to view this.
+  {% endif %}
+  {% if flag == 1 %}
+  You have invitation to 
+  <a href="/debate/participate/{{ deb.id }}">participate</a> in this debate
+  {% endif %}
+  {% if flag == 2 %}
+  You are participating in this debate.
+  {% endif %}
+  
+<br />
+<br />
+  <a href="/debate/{{ deb.id }}/start/">Start</a> this debate
+  {% else %}
+  Cannot start debate now.
+  {%endif%}
+                 
+
+{%endblock%}

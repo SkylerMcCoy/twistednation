@@ -1,0 +1,22 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.members}}'s Home
+{%endblock%}
+{%block page_content%}
+{%include "user_pages/common_elements/widget_nav_top_petitions.html"%}
+
+<div class="tab-content">
+    <div id="">      
+        <h3 style="margin-bottom: 0px;" >List of petitions</h3>
+        <a href="create/" class="btn" style="margin-top:15px;"  >+ Create a new petition</a>
+        {% for pet in petitions %}
+        <a href="{{pet.id}}">
+            <h5 style="margin-bottom: 0px;" >{{pet.title}}</h5><i>created by {{pet.user.user.first_name}} {{pet.user.user.last_name}}</i>
+            </a>
+        {% endfor %}
+    </div>
+    
+</div>                   
+                   
+
+{%endblock%}

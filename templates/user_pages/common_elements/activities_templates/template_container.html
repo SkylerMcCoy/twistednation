@@ -1,0 +1,55 @@
+
+
+<div class="individualFeed">
+	    <div class="dividerLight">
+	    </div><!--end dividerLight-->
+	    <div class="displayPic">  
+	    <a href="/profile/{{each_feed.owner_member.user.username}}">
+	    <img src="{{MEDIA_URL}}{{each_feed.owner_member.photo}}">
+	        </a>
+	    </div><!--end displayPic-->
+		<div class="time">
+	    <p>{{each_feed.parent_activity.timestamp}}</p>
+	    </div><!--end time-->
+		{%block template_user_name%}	    
+	    <p style="margin-left:65px;"><strong><a href="/profile/{{each_feed.owner_member.user.username}}">{{each_feed.owner_member.user.first_name}} {{each_feed.owner_member.user.last_name}}</a></strong></p>
+	    {%endblock%}
+	    
+		{%block template_content%}
+	    <div style="margin: 20px 0 20px 5px; width:550px;">Some placeholder text </div> 
+	    {%endblock%}
+	    
+	    <div style="clear:both">
+	
+	{%block template_icons%}
+	    	
+	    	<div class="contentIcons">
+		        <a href="/post/5/action/?action=upvote" class=" c_postVote" ><span class="upVote_active" class=" c_postUpVote">{{each_feed.upvotes_number}}</span></a>
+		        <a href="/post/5/action/?action=downvote" class=" c_postVote " ><span class="downVote_disable" class="c_postDownVote">{{each_feed.downvotes_number}}</span></a>
+		        <a href="/comments/{{each_feed.type}}/{{each_feed.item_id}}/view/" class="viewComments"><img src="{{STATIC_URL}}images/commentIcon_15.png"> View all <span class="commentsNumber">{{each_feed.comments_number}}</span> comments.</a>
+		        <a href="/pin/{{each_feed.item_id}}/pin/?type={{each_feed.type}}" class="pinPost {% if each_feed.pin %}pinPost_disable{% else %}pinPost_active{% endif %} ">{% if each_feed.pin %}Unpin{% else %}Pin{% endif %} this.</a>
+	         </div>
+	    	
+	
+	<!--	    <div class="contentIcons">
+		        <a href="/post/5/action/?action=upvote" class=" c_postVote"><img src="/public/static/images/thumbsUp_15.png"><span class=" c_postUpVote">2</span></a>
+		        <a href="/post/5/action/?action=downvote" class=" c_postVote "><img src="/public/static/images/thumbsDown_15.png"><span class="c_postDownVote">0</span></a>
+		        <a href="/post/5/comments/all/" class="viewComments"><img src="/public/static/images/commentIcon_15.png">View all <span class="commentsNumber">0</span> comments.</a>
+		        <a href="/post/5/pin/" class="pinPost"><img src="/public/static/images/pinIcon_15.png">Pin it.</a>
+	         </div><!--emd contentIcons-->
+	    {%endblock%}
+	    </div>
+		{%block template_comment_box%}
+		
+         <div class="existingComments">
+         </div>
+         
+	    <div class="addCommentBox">
+	        <img class="commentDP" src="{{MEDIA_URL}}{{user.members.photo}}">
+	        <form action="/comments/{{each_feed.type}}/{{each_feed.item_id}}/add/" class="commentForm">
+	        <input type="text" placeholder="Write a comment..." name="content" style="width:464px; margin: 0 0 0 5px">
+	        <input type="submit" style="display:none">
+	        </form>
+	        </div><!--end addCommentBox-->
+	    {%endblock%}
+	    </div>

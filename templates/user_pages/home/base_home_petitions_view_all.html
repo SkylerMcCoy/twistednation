@@ -1,0 +1,73 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.members}}'s Home
+{%endblock%}
+{%block page_content%}
+{%include "user_pages/common_elements/widget_nav_top_petitions.html"%}
+                    
+                    <!--##individual contents##-->
+                     <div class="tab-content">
+                     {%block home_content%}
+                     {%endblock%}
+                      
+               <div class="tab-pane active" id="petition">
+                          {%load url from future %}
+                          
+                                  <div id="signPetitionWrap">                            
+                                    <div id="signPetition">
+                                        <h4><strong>Sign</strong> this Petition</h4>
+                                        
+                                        <img src="/pp/{{user.members.photo}}"  />  <!--profile picture of the current user-->
+                                        <h5><a href="/profile/{{user.username}}">{{user.members}}</a></h5><br/> <br/>
+                                        
+                                          <form action="/petitions/{{ pet.id }}/signed" method="post"> {% csrf_token %}
+                                        <div id="signPetitionTextBox">
+                                        <p>Why are you signing?   
+                                          {{signform.whysign}}
+                                          </div>
+                                          <input type="submit" value="Sign" class="btn"/>
+                                      </form></p>
+                                        <br /><br />
+                                        
+                                    </div><!--end signPetition-->
+                                   </div><!--end signPetitionWrap-->
+                            <br /><br />
+                            <ul class="nav nav-tabs">
+                              <li class="active"><a href="#aboutPetition" data-toggle="tab" class="petitionSubNavactive">About</a></li>
+                              <li><a href="#commentPetition" data-toggle="tab">Comments</a></li>
+                              <li><a href="#storyPetition" data-toggle="tab">Stories</a></li>
+                              <li><a href="#signerPetition" data-toggle="tab">Signers</a></li>
+                            </ul>
+                            <div class="tab-content">
+                              <div class="tab-pane active" id="aboutPetition">
+                              {{pet.content}}
+                              </div>
+                              <div class="tab-pane" id="commentPetition">
+                              Comments
+                              </div>
+                              <div class="tab-pane" id="storyPetition">
+                              {{pet.stories}}
+                              </div>
+                              <div class="tab-pane" id="signerPetition">
+                              {% if signedusers %}
+                              {% for siguser in signedusers %}
+                              <a href="/profile/{{siguser.user.user}}">{{siguser.user}}</a>:{{siguser.whysign}}<br/>
+                              {% endfor %}
+                              {% else %}
+                              Nobody signed this petition yet.
+                              {% endif %}
+                              </div>
+                            </div>
+                            <br/> <br/>
+                            {% if pet.user.user == user %}
+                            <a href="/petitions/{{pet.id}}/delete/">Delete this petition</a>
+                            {% endif %}
+            <br/><br/>
+  
+  
+                   
+                   </div>
+                 </div>
+
+
+{%endblock%}

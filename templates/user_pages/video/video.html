@@ -1,0 +1,80 @@
+{% extends "user_pages/common_elements/base_user.html" %} 
+{%block title%} 
+{{user}}'s Home 
+{%endblock%} 
+{%block page_content%}
+<script type="text/javascript" src="{{STATIC_URL}}jwplayer/jwplayer.js"></script>
+		<div id="subNav">
+			<ul class="nav nav-tabs">
+				<li><a href="/albumlist/" >Photos</a></li>
+				<li class="active"><a href="/video/" class="subNavActive"
+					 class="active">Videos</a></li>
+			</ul>
+
+		</div>
+		<!--end subNav-->
+		<!--##individual contents##-->
+		<div class="tab-content">
+			<div class="tab-pane active" id="photoTab">
+				<h3>Videos</h3>
+				<h4>{{video.name}}</h4>
+				<div id='player_4209'></div>
+					<script type='text/javascript'>
+					  jwplayer('player_4209').setup({
+					    file: "{{MEDIA_URL}}ups/videos/{{video.filename}}",
+					    width: "640",
+					    height: "520",
+					    primary: "flash",
+					    image: "",
+					  });
+					</script>
+				<strong>Description:</strong>{{video.desc}}</br>
+				<strong>Uploaded by:</strong>{{video.user}}
+
+
+				<!--end galleryTopButtons-->
+
+				
+
+			</div>
+
+		</div>
+
+
+	
+
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"> </script>
+<!-- ##for toggling child li## -->
+<script type="text/javascript">
+
+
+$(function () {
+    $('.reveal').click(function() {
+        $(this).children('ul').slideToggle();
+		$(this).toggleClass('revealSwitch');
+	    });
+	
+	
+	
+    $('.reveal a').click(function(event) {
+        event.stopPropagation();
+    });
+});
+
+</script>
+
+{%endblock%}
+<!--##for toggling show/hide##-->
+
+
+<!-- for tabs--->
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
+</body>
+</html>-->

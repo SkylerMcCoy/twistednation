@@ -1,0 +1,67 @@
+{% extends "user_pages/common_elements/base_user.html" %} 
+{%block title%} 
+{{user}}'s Home 
+{%endblock%} 
+{%block page_content%}
+		<div id="subNav">
+			<ul class="nav nav-tabs">
+				<li><a href="/albumlist/" >Photos</a></li>
+				<li class="active"><a href="#videoTab" class="subNavActive" class="active">Videos</a></li>
+			</ul>
+
+		</div>
+		<!--end subNav-->
+		<!--##individual contents##-->
+		<div class="tab-content">
+			<div class="tab-pane active" id="photoTab">
+				<h3>Videos</h3>
+				{%for vid in videos %}
+				<a href="/video/{{vid.id}}"><strong>{{vid.name}}</strong></a>:{{vid.desc}}<br/>
+				{% endfor %}
+			</br></br>
+			<h4>Upload new video</h4>
+			<div id="uploadVideo">
+				<form action="/video/" method="post" enctype="multipart/form-data">{% csrf_token %}
+						Name:{{form.name}}<br/><br/>
+						Description:{{form.desc}}<br/><br/><br/>
+						Video:{{form.file}}<br/>
+						(Only FLV and MP4 files supported)<br/><br/>
+					<input type="Submit" value="Upload" class="btn"/>
+				</form>
+			</div>
+				
+
+
+				
+
+				
+
+			</div>
+
+		</div>
+
+
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"> </script>
+<!-- ##for toggling child li## -->
+<script type="text/javascript">
+
+
+$(function () {
+    $('.reveal').click(function() {
+        $(this).children('ul').slideToggle();
+		$(this).toggleClass('revealSwitch');
+	    });
+	
+	
+	
+    $('.reveal a').click(function(event) {
+        event.stopPropagation();
+    });
+});
+
+</script>
+
+{%endblock%}

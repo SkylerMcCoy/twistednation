@@ -1,0 +1,39 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.members}}'s Home
+{%endblock%}
+{%block page_content%}
+{%include "user_pages/common_elements/widget_nav_top_petitions.html"%}
+
+<div class="tab-content">
+    <div id="">      
+        <h3 style="margin-bottom: 0px; float:left" >{{ petition.title }}</h3>
+        <a href="/petitions/{{petition.id}}/sign/" class="btn" style="margin-top:15px; float:right;"  >+ Sign this petition</a>
+        <a href="/petitions/{{petition.id}}/cover-letter/" class="btn" style="margin-top:15px; margin-right:10px; float:right;" >Cover Letter</a>
+    </div>
+    <p style="clear:both;" ><i>Created by <a href="/profile/{{petition.user.user.username}}/">{{petition.user.user.first_name}} {{petition.user.user.last_name}}</a> </i> </p>
+    <p>Deadline: <strong>{{petition.deadline}}</strong> | Number of signatures: <strong>{{petition.current_num}}/{{petition.target_no_signs}}</strong>. <a href="cover-letter/">Click to view the signatures.</a></p>
+    <br />
+    
+        {% if petition.user.user = user %}
+        <a href="/petitions/{{petition.id}}/delete" class="btn" >Delete this petition</a>
+        {% endif %}
+    <div class="">
+        <h4>What the petition is about.</h4>
+        {{petition.body|safe}}
+        
+        <h5>Decision Makers</h5>
+        {% for each_dm in dm2 %}
+            <div style="float:left; margin-right:10px; margin-bottom:10px;display: inline; border:#ccc thin solid; padding: 5px; border-radius: 10px;">
+                <p style="margin:0px;" >Decision Maker: {{each_dm.name}} ({{each_dm.email}}) {% if petition.user.user = user %}<a href="#" class="" >[X]</a>{% endif %} </p>
+                
+            </div>
+        {% endfor %}
+        {% if petition.user.user = user %}
+        <a href="/petitions/{{petition.id}}/add-decision-maker/" class="btn" >Add a new Decision Maker</a>
+        {% endif %}
+    </div>
+</div>                   
+                   
+
+{%endblock%}

@@ -1,0 +1,209 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user}}'s Home
+{%endblock%}
+{%block page_content%}
+{%include "user_pages/common_elements/widget_nav_top_debate.html"%}
+                    
+                    <!--##individual contents##-->
+                     <div class="tab-content">
+                     {%block home_content%}
+                     {%endblock%}
+                      
+                      <div class="tab-pane active" id="debate">
+                        {% if dform  %}
+                      		<h2>Lets get started</h2>
+                           <form action="/debate/done/" method="post"> {% csrf_token %}
+                            	<h5>Set the parameters of your debate</h5>
+                            	<ol>
+                                {{dform.errors}}
+                                    <li>What is the topic of your debate?<br />
+                               <!--     <input type="text" placeholder="Enter name of individual, organisation or government body"/>-->
+                                    {{ dform.topic }}
+                                    </li>
+                                    <li>What questions do you like addressed?<br  />
+                                <!--    <input type="text" placeholder="Round 1 question"/>-->
+                                    {{ dform.roundquestion1 }}
+                                    <br />
+                                 <!--   <input type="text" placeholder="Round 2 question"/>-->
+                                    {{ dform.roundquestion2 }}
+                                    <br />
+                                 <!--   <input type="text" placeholder="Round 3 question"/> -->
+                                    {{ dform.roundquestion3 }}
+                                    <br />
+                                    </li>
+                                    <li>Set date for debate<br  />
+                                    {{ dform.date }}<br />
+                                    </li>
+                                    <li>Set number of debators<br />
+                                      {{dform.num_part}}
+                                 </ol>
+                                 
+                                  <button type="submit" class="btn">Continue ></button>
+                            </form>
+                            {% else %}{% if dform1 and dform2 %}
+                            <h2>Almost Done</h2>
+                            {% if new_debate %}
+                            <h3> {{new_debate.topic }} </h3>
+                              {% endif %}
+                             <form  action="/debate/step2/" method="post">  {% csrf_token %}
+                            	<h5>Invite your friends to join you in this debate.</h5>
+                                <ul>
+                              		  <li>Please invite debators<br  />
+                                      {{ dform1.management_form}}
+                                         {% for inviteform in dform1 %}
+                                          {{ inviteform.invited_user}}
+                                          <br />
+                                          {% endfor %}
+                                        <p>*An email and notification will be sent to all the invites</p>
+                                        </li>
+                                       <li>Stand<br  />
+
+                                       {% for fields in dform2.stand %}
+                                       {{ fields }}
+                                       {% endfor %}
+                                        </li>
+                                        <input type="hidden" name="debate" value= {{new_debate.id}} />
+                                </ul>
+                                <button type="submit" class="btn">Submit</button>
+                              </form>
+                            {% else %}
+                            {% if deb %}
+                            <div id="oxfordStyle">
+                                <h1>Topic: {{ debate.topic }} </h1>
+                              <div class="userImg">
+                                  <a href="#"><img src="{{STATIC_URL}}images/displayPic_13.jpg"  /></a>
+                                </div>
+                                <div class="userImg">
+                                  <a href="#"><img src="{{STATIC_URL}}images/dp_other_01_03.jpg"  /></a>
+                                </div>
+                                <div class="userImg">
+                                  <a href="#"><img src="{{STATIC_URL}}images/dp_other_02_03.jpg"  /></a>
+                                </div>
+                              
+                                <div class="clearBoth"></div>
+                                <div class="userImgLarge">
+                                  <img src="{{STATIC_URL}}images/displayPicXLarge_03.png"  />
+                                 </div>
+                                 <div class="floatLeft"></div>
+                                    <a href="#"><h5>{{debate.created_by}}</h5></a><br /><br />
+                                  <!--  <div id="contentIcons">
+                                                <a href="#"><img src="{{STATIC_URL}}images/thumbsUpSmall_25.png"  />2</a>
+                                                <a href="#"><img src="{{STATIC_URL}}images/thumbsDownSmall_25.png"  />0</a>
+                                    </div><!--emd contentIcons-->
+                                <h6>Round Questions:<br>
+                                    First Round:  {{debate.roundquestion1}}<br>
+                                    Second Round: {{debate.roundquestion2}}<br>
+                                    Third Round:  {{debate.roundquestion3}}</h6>
+                                <div class="clearBoth"></div><br  /><br />
+                                <ul class="nav nav-tabs">
+                                      <li class="active"><a href="#postQuestion" data-toggle="tab">Post a Question/Comment</a></li>
+                                      
+                                    </ul>
+                                    <div class="tab-content">
+                                      <div class="tab-pane active" id="postQuestion">
+                                      <table border="1" cellpadding="10" width="100%">
+                                      <tr>
+                                        <th width="6%">Stand:</th>
+                                        <th width="47%">For</th>
+                                        <th width="47%">Against</th>
+                                      </tr>
+                                      <tr>
+                                        <th>Debators:</th>
+                                        <td>
+                                          {% if usersfor %}
+                                          {% for user in usersfor %}
+                                          {{ user.firstname }} {{ user.lastname}},
+                                          {% endfor %}
+                                          {% endif %}
+                                        </td>
+                                        <td>        
+                                          {% if usersagainst %}
+                                          {% for user in usersagainst %}
+                                          {{ user.firstname }} {{ user.lastname}},
+                                          {% endfor %}
+                                          {% endif %}
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    <div>
+                                      <div class="forargument" align="left">
+                                      {% if argfor %}
+                                      {% for argument in argfor %}
+                                      {{ argument.user_questioning }}: {{ argument.question}}<br/>
+                                      {% endfor %}
+                                      {% endif %}
+                                       </div>
+                                      <div class="againstarguemnt" align="right">
+                                       {% if argagainst %}
+                                      {% for argument in argagainst %}
+                                      {{ argument.user_questioning }}: {{ argument.question}}<br />
+                                      {% endfor %}
+                                      {% endif %}
+                                      </div>
+      
+                                    </div>
+                                      <div class="clearBoth"></div><br  /><br />
+                                      <form action="/debate/{{ deb }}/start/" method="post"> {% csrf_token %}
+                                      {{form.question}}
+                                    </form>
+                                      
+                                    </div>
+                                                                
+                            </div><!--end oxfordStyle"-->{% else %}  
+                              <h3>Support your opinions</h3>
+                              <p>Debate is a social decision making tool built to spur constructive conversation and critical thinking. The Debate forum is an ideal setting for You to debate the topics and ideas you feel passionately about. You can host your own Oxford style debate, or search for upcoming debates to participate in. What side will you take?
+                              
+                            <div class="clearBoth"></div>
+                            <a class="btn" href="/debate/done/">Create-A-Debate</a>
+                            <a class="btn" href="#">Search Upcoming Debates</a>
+                            
+                            <br  /><br /><br />
+                            <div class="clearBoth"></div>
+                            <ul class="nav nav-tabs">
+                              <li class="active"><a href="#yourDebate" data-toggle="tab" class="subActive" >Participating Debates</a></li>
+                              <li><a href="#interestDebate" data-toggle="tab">Invited Debates</a></li>
+                            </ul>
+                            <div class="tab-content">
+                              <div class="tab-pane active" id="yourDebate">
+                            {% if part_deb_list %}
+                            {%for debate in part_deb_list%}
+                                <p>
+                                <a href="{% url debate.views.viewdeb debate.id %}">{{debate.topic}}</a>
+                                </p>
+
+                            {% endfor %}
+                            {% else %}
+                            <p>
+                                      No debates available
+                            </p>
+                            {% endif %}
+                              </div>
+                              <div class="tab-pane" id="interestDebate">
+                              {% if debate_list %}
+                            {%for debate in debate_list%}
+                                <p>
+                                <a href="{% url debate.views.viewdeb debate.id %}">{{debate.topic}}</a>
+                                </p>
+
+                            {% endfor %}
+                            {% else %}
+                            <p>
+                                      No debates available
+                            </p>
+                            {% endif %}
+                          </div>
+
+                            </div>
+                            
+
+                           {% endif %}
+                            {% endif %}
+                          {% endif %}
+                             
+                      </div>
+                    </div>
+                   
+                   
+
+{%endblock%}

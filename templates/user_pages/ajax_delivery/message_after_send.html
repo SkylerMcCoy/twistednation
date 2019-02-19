@@ -1,0 +1,23 @@
+<div class="commentBox" style="{% if message.member1.user.username == user.username %}float:right;{%else%}float:left;{% endif %} padding: 5px; corner-radius: 5px; background-color:#eef; " >
+	
+<div>
+<a href="/profile/{{message.member1.user.username}}" style="{% if message.member1.user.username == user.username %}float:right;{%else%}float:left;{% endif %}"><img class="commentDP" src="/pp/{{message.member1.photo}}"></a>
+<strong style="{% if message.member1.user.username == user.username %}float:right;margin-right: 10px;{%else%}float:left;margin-left: 10px;{% endif %}" ><a href="/profile/{{message.member1.user.username}}">{{message.member1.user.first_name}} {{message.member1.user.last_name}}</a></strong>
+<span style="{% if message.member1.user.username == user.username %}float:left;{%else%}float:right;{% endif %} color:#999;" >{{message.timestamp}}</span>
+</div>
+<div style="clear:both" ></div>
+<div class="commentname" style="padding-right:3px;" > 
+<p  style="{% if message.member1.user.username == user.username %}float:right; margin-right: 50px; text-align:right;{%else%}float:left; margin-left: 50px; text-align:left;{% endif %} "  > {{message.content}} </p>
+</div><!--end commentname-->
+
+{% if message.member1 == user.members %}
+<p style="color:#999; clear:both; margin: 5px 0 0 10px;" >
+	{% if message.has_read%}
+		Delivered to {{message.member2.user.first_name}}.
+	{% else %}
+	{% endif %}
+</p>
+{% endif %}
+
+</div>
+<div style="clear:both;" ></div>

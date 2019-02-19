@@ -1,0 +1,69 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+<div class="pageContent" >
+  <div class="pollHeaderOptions">
+  
+  <a href="#" class="btn pollCreateWrapControl" style="" >+ Create a new Poll</a>
+  
+  <div class="pollCreateWrap" style="display:none;" >
+  <h3>Create a new Poll</h3>
+  <form action="" method="post" >
+    {%csrf_token%}
+    {{poll_form.as_p}}
+    <input type="submit" value="Create" class="btn">
+  </form>
+  </div>
+  </div>
+  
+  <div style="clear:both" ></div>
+  {% if polls %}
+    <h3>Your Polls</h3>
+    {% for poll in polls  %}
+  
+<div class="individualFeed">
+      <div class="dividerLight">
+      </div><!--end dividerLight-->
+      <div class="displayPic">  
+      <a href="/profile/">
+      <img src="/pp/{{user.members.photo}}">
+          </a>
+      </div><!--end displayPic-->
+    <div class="time">
+        <p>{{poll.timestamp}}</p>
+      </div><!--end time-->
+    
+<div id="createPoll">
+<p><strong><a href="/profile/">{{user.first_name}} {{user.last_name}}</a></strong></p>
+</div>
+
+      
+    
+
+      
+      <div style="clear:both; margin: 20px 0 0 5px; ">
+  
+  
+    <a href="/polls/{{poll.id}}/">
+      <h4>{{poll.title|truncatewords_html:5}}</h4>
+      <br>
+      <p>{{poll.description|truncatewords_html:8}}</p>
+    </a>
+
+      </div>
+    
+
+      </div>
+      
+      
+  {% endfor %}
+  {% endif %}
+  
+</div>
+<div>
+    
+
+</div>
+{%endblock%}

@@ -1,0 +1,89 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+
+                    <div class="pageContent" >
+                    
+                    <!--##individual contents##-->
+                     <div class="messagesPage">
+                    
+                            <h3>Your Conversations</h3>
+                     	<div class="contactsList">
+                          
+                           <h4>Friends</h4>  
+                     		{% for friend in friends_list %}
+                            <a href="/messages/{{friend.user.username}}/"  class="individyalFeedWrap" >     
+                                <div class="individualFeed"  >
+                                    <div class="displayPic" >  
+                                        <img src="/pp/{{friend.photo}}" style="" >
+                                    </div><!--end displayPic-->
+                                    <p>{{friend.user.first_name}} {{friend.user.last_name}}</p>
+                                    <div style="clear:both;" ></div>
+                                </div>
+                                
+                            </a>
+                     		{% endfor %}
+                     		
+                     	</div>
+
+                       <div id="">
+                           <h4>Unread conversations</h4>
+                           
+                           
+                           <!-- Melvin this is where you need to add -->
+                           <!-- Starts here -->
+                           <div id="" class="recentConversationsAllFriends" >
+                           {% if unread_conversations  %}
+                                        
+                             {% for message in unread_conversations  %}
+                                
+                                
+                                <div class="commentBox" style="{% if message.member1.user.username == user.username %}float:right;{%else%}float:left;{% endif %} padding: 5px; corner-radius: 5px; background-color:#eef; " >
+  
+<div  >
+<a href="/messages/{{message.member1.user.username}}" style="{% if message.member1.user.username == user.username %}float:right;{%else%}float:left;{% endif %}"><img class="commentDP" src="/pp/{{message.member1.photo}}"></a>
+<strong style="{% if message.member1.user.username == user.username %}float:right;margin-right: 10px;{%else%}float:left;margin-left: 10px;{% endif %}" ><a href="/messages/{{message.member1.user.username}}">{{message.member1.user.first_name}} {{message.member1.user.last_name}}</a></strong>
+<span style="{% if message.member1.user.username == user.username %}float:left;{%else%}float:right;{% endif %} color:#999;" >{{message.timestamp}}</span>
+</div>
+<div style="clear:both" ></div>
+<div class="commentname" style="padding-right:3px;" > 
+<a href="/messages/{{message.member1.user.username}}"><p  style="{% if message.member1.user.username == user.username %}float:right; margin-right: 50px; text-align:right;{%else%}float:left; margin-left: 50px; text-align:left;{% endif %} "  > {{message.content}} </p></a>
+</div><!--end commentname-->
+
+{% if message.member1 == user.members %}
+<p style="color:#999; clear:both; margin: 5px 0 0 10px;" >
+  {% if message.has_read%}
+    Delivered to {{message.member2.user.first_name}}.
+  {% else %}
+  {% endif %}
+</p>
+{% endif %}
+
+</div>
+<div style="clear:both;" ></div>
+                                
+                                
+                             {% endfor %}
+                           {% else     %}
+                            <h4 class=".noRecentConMessage" >No recent conversations with {{friend.user.first_name}} {{friend.user.last_name}}.</h4>
+                           {% endif %}
+                          </div><!--end recentConversations-->
+                           
+                           
+                           
+                           <!-- Ends here -->
+                       	
+                            
+                       </div><!--end recentConversations-->
+                             <div style="clear:both;" ></div>          
+                                    
+                                
+                          
+                      
+                     
+                </div>   
+                </div>
+
+{%endblock%}

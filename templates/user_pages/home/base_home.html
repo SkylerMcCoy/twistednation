@@ -1,0 +1,17 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+{%include "user_pages/common_elements/widget_nav_top.html"%}
+                    
+                    <!--##individual contents##-->
+                     <div class="tab-content">
+{%block home_content%}
+{%endblock%}
+                      
+                     
+                </div>   
+                   
+
+{%endblock%}

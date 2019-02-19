@@ -1,0 +1,144 @@
+{%extends "user_pages/home/base_home.html"%}
+{%block home_content%}
+
+                      <div class="tab-pane" id="debate">
+                      		<h2>Lets get started</h2>
+                           <form>
+                            	<h5>Set the parameters of your debate</h5>
+                            	<ol>
+                                    <li>What is the topic of your debate?<br />
+                                    <input type="text" placeholder="Enter name of individual, organisation or government body"/>
+                                    </li>
+                                    <li>Are you for or against this topic?<br  />
+                                    <label class="radio">
+                                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                      For
+                                    </label>
+                                    <label class="radio">
+                                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                      Against
+                                    </label>
+                                    </li>
+                                    <li>What questions do you like addressed?<br  />
+                                    <input type="text" placeholder="Round 1 question"/><br />
+                                    <input type="text" placeholder="Round 2 question"/><br />
+                                    <input type="text" placeholder="Round 3 question"/><br />
+                                    </li>
+                                    <li>Set time and date for debate<br  />
+                                    <select class="span0">
+                                      <option value="1">11</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                    </select>
+                                    
+                                    <select class="span0">
+                                      <option value="1">11</option>
+                                      <option value="2">22</option>
+                                      <option value="3">30</option>
+                                      <option value="4">9</option>
+                                    </select>
+                                    
+                                    <select class="spanyear">
+                                      <option value="1">2000</option>
+                                      <option value="2">2001</option>
+                                      <option value="3">2002</option>
+                                      <option value="4">2003</option>
+                                    </select>
+                                    </li>
+                                 </ol>
+                                 
+                                  <button type="submit" class="btn">Continue ></button>
+                            </form>
+                            <h2>Almost Done</h2>
+                             <form>
+                            	<h5>Invite your friends to join you in this debate.</h5>
+                                <ol>
+                              		  <li>Please invite debators<br  />
+                                        <select class="span4">
+                                          <option value="1">Jesse Pinkman</option>
+                                          <option value="2">Walter White</option>
+                                          <option value="3">Kim Kardhasian</option>
+                                          <option value="4">Angelian Jolie</option>
+                                        </select>
+                                        <p>*An email and notification will be sent to all the invites</p>
+                                        </li>
+                                       <li>Who can participate in this debate?<br  />
+                                        <select class="span4">
+                                          <option value="1">Jesse Pinkman</option>
+                                          <option value="2">Walter White</option>
+                                          <option value="3">Kim Kardhasian</option>
+                                          <option value="4">Angelian Jolie</option>
+                                        </select>
+                                        </li>
+                                </ol>
+                              </form>
+                              <a class="btn" href="#">Submit ></a>  
+                              
+                              <h3>Support your opinions</h3>
+                              <p>Debate is a social decision making tool built to spur constructive conversation and critical thinking. The Debate forum is an ideal setting for You to debate the topics and ideas you feel passionately about. You can host your own Oxford style debate, or search for upcoming debates to participate in. What side will you take?
+                              
+                            <div class="clearBoth"></div>
+                            <a class="btn" href="#">Create-A-Debate</a>
+                            <a class="btn" href="#">Search Upcoming Debates</a>
+                            
+                            <br  /><br /><br />
+                            <div class="clearBoth"></div>
+                            <ul class="nav nav-tabs">
+                              <li class="active"><a href="#yourDebate" data-toggle="tab" class="subActive" >Your Debates</a></li>
+                              <li><a href="#interestDebate" data-toggle="tab">Debates that may interset you</a></li>
+                            </ul>
+                            <div class="tab-content">
+                              <div class="tab-pane active" id="yourDebate">
+                              These are your debates
+                              </div>
+                              <div class="tab-pane" id="interestDebate">
+                              These are interseting debates.
+                              </div>
+                            </div>
+                            
+                            <div id="oxfordStyle">
+                            	<div class="userImg">
+                                	<a href="#"><img src="{{STATIC_URL}}images/displayPic_13.jpg"  /></a>
+                                </div>
+                                <div class="userImg">
+                                	<a href="#"><img src="{{STATIC_URL}}images/dp_other_01_03.jpg"  /></a>
+                                </div>
+                                <div class="userImg">
+                                	<a href="#"><img src="{{STATIC_URL}}images/dp_other_02_03.jpg"  /></a>
+                                </div>
+                              
+                              	<div class="clearBoth"></div>
+                              	<div class="userImgLarge">
+                                	<img src="{{STATIC_URL}}images/displayPicXLarge_03.png"  />
+                                 </div>
+                                 <div class="floatLeft"></div>
+                                    <a href="#"><h5>Jesse Powell</h5></a><br /><br />
+                                    <div id="contentIcons">
+                                                <a href="#"><img src="{{STATIC_URL}}images/thumbsUpSmall_25.png"  />2</a>
+                                                <a href="#"><img src="{{STATIC_URL}}images/thumbsDownSmall_25.png"  />0</a>
+                                    </div><!--emd contentIcons-->
+                                
+                                <div class="clearBoth"></div><br  /><br />
+                                <ul class="nav nav-tabs">
+                                      <li class="active"><a href="#postQuestion" data-toggle="tab">Post a Question/Comment</a></li>
+                                      <li><a href="#tabItem" data-toggle="tab">TabItem</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                      <div class="tab-pane active" id="postQuestion">
+                                      Previous Comments
+                                      <div class="clearBoth"></div><br  /><br />
+                                      <input type="text" class="span4"  placeholder="Submit a Question/Comment" />
+                                      <div class="floatRight"></div>
+                                      <a class="btn">Submit</a>    
+                                      </div>
+                                      <div class="tab-pane" id="tabItem">
+                                      These are interseting Items.
+                                      </div>
+                                    </div>
+                                                                
+                            </div><!--end oxfordStyle"-->
+                            
+                      </div>
+                    </div>
+{%endblock%}

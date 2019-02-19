@@ -1,0 +1,90 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.members}}'s Home
+{%endblock%}
+{%block page_content%}
+{%include "user_pages/common_elements/widget_nav_top_petitions.html"%}
+                    
+                    <!--##individual contents##-->
+                     <div class="tab-content">
+                     {%block home_content%}
+                     {%endblock%}
+                      
+               <div class="tab-pane active" id="petition">
+                     
+                      <h4>You have a choice. This is your chance to make it heard.</h4>
+                         
+                            <div class="dividerLight"></div>
+                            <br/>
+                            {% if form %}
+                            <a class="btn" href="/petitions/listall/">Browse Petitions</a>
+                            <br /><br/> <br/>
+                            <p>It only takes one person to make a change.</p>
+                            <h4>Start an online petition today  and make your voice heard.</h4>
+                            <a class="btn" href="#startYourPetition">Start Petition</a>
+                            <br /><br />
+                            <h4>Start, Amplify and succeed in your campaign for change! </h4>
+                            <div class="petitionSubPara">
+                              <p><strong>Create</strong> your own petition. You can start your petition by answering a few simple questions, then later you may add additional content.</p>
+                            </div><!--end petitionSubPara-->
+                            <div class="petitionSubPara">
+                              <p><strong>Amplify </strong> your petition. Easily tell all of your friends across multiple social networks about you petition and rally support.</p>
+                            </div><!--end petitionSubPara-->
+                            <div class="petitionSubPara">
+                              <p><strong>Succeed</strong> and create change. Starting you petition in a virtual place makes it easier to get results you want to see.</p>
+                            </div><!--end petitionSubPara-->
+                            <div class="clearBoth"></div>
+                            
+                            <div id="startYourPetition">
+                            <h3>Start your Petition</h3>
+                            <form action="/petitions/" method="post"> {% csrf_token %}
+                             {% if form.errors %}<p>Form is not complete</p>
+                             {% endif %}
+                             <h5>Your Campaign for change starts here.</h5>
+                              <ol>
+                                    <li>What Change do you want to see?<br  />
+                                    {{form.title}}
+                                    </li>
+                                    <li>Why is this important?<br  />
+                                    {{form.content}}
+                                    </li>
+                                    <li>Who are you petitioning?<br />
+                                    {{form.target}}
+                                    </li>
+                                    <li>How many signatures do you need?<br  />
+                                    {{form.target_num}}
+                                    </li>
+                                    <li>
+                                      What is the story behind this petition:<br/>
+                                      {{form.stories}}<br/>
+                                    </li>
+                                </ol>
+                                 <!-- <label class="checkbox">
+                                    <input type="checkbox">Amplify Petition
+                                  </label> -->
+                                  <input type="submit" value="Save" class="btn"/>
+                            </form>
+                           </div> 
+                      </div>    
+                      {%else %}
+                            {% if petition_list %}
+                            <h4> Available Petitions</h4>
+                              {%for petition in petition_list%}
+                                    <p>
+                                      <a href="{% url petitions.views.viewpet petition.id %}">{{petition.title}}</a>
+                                    </p>
+
+                              {% endfor %}
+                    {% else %}
+                      <p>
+                      No petitions available
+                    </p>
+                  {% endif %}
+                  {% endif %}
+                                        
+                             
+                      </div>
+                   
+                   
+
+{%endblock%}

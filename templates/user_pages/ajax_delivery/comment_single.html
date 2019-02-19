@@ -1,0 +1,13 @@
+<div class="commentBox">
+<a href="/profile/{{comment.member.user.username}}"><img class="commentDP" src="/pp/{{comment.member.photo}}"></a>
+<div class="commentname" style="padding-right:3px;" >
+<p><strong><a href="/profile/{{comment.member.user.username}}">{{comment.member.user.first_name}} {{comment.member.user.last_name}}</a></strong><span style="float:right;" >
+	{% if user.members == comment.member %}
+		<span style="font-size:10px" >(<i><a href="#">Delete</a></i>)</span>
+	{% endif %}
+	{{comment.timestamp}}</span>
+	</p>
+<p>  {{comment.content}} </p>
+</div><!--end commentname-->
+
+</div>

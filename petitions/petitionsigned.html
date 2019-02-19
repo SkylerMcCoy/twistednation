@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>Petition | Signed</title>
+</head>
+<body>
+You have signed the petition...<br>
+{% if signed_users %}
+	Users signed this petition:<br>
+	{% for users in signed_users %}
+		{{ users.name }}
+	{% endfor %}
+
+{% else %}
+	something is wrong. no users signed this petition.
+{% endif %}
+</body>
+</html>

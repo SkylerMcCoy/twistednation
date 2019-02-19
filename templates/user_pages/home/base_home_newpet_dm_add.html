@@ -1,0 +1,28 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.members}}'s Home
+{%endblock%}
+{%block page_content%}
+{%include "user_pages/common_elements/widget_nav_top_petitions.html"%}
+
+<div class="tab-content">
+    <h3 style="margin-bottom: 0px;" >Add a new Decision Maker</h3>
+    <p>"<b><a href="/petitions/{{petition.id}}/">{{petition.title}}</a></b>" <i>created by <a href="/profile/{{petition.user.user.username}}/">{{petition.user.user.first_name}} {{petition.user.user.last_name}}</a></i></p>
+    <form action="." method="post" accept-charset="utf-8">
+        {% csrf_token %}
+      
+      {% for field in dm2_form %}
+    <p>
+    <label>{{field.label}}</label>
+    {{field}}
+    </p>
+    {% if field.errors %}
+    <p>{{field.errors}}</p>
+    {% endif %}
+    {% endfor %}
+      <p><input type="submit" value="Continue &rarr;" class="btn" /></p>
+    </form>
+</div>                   
+                   
+
+{%endblock%}

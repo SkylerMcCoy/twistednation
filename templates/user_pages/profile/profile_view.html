@@ -1,0 +1,78 @@
+{% extends "user_pages/home/base_home.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+<div class="pageContent"><div id="profileDetails">
+               <img class="profilePicture" src="{{MEDIA_URL}}{{member.photo}}" alt="dp" />   
+                     <div class="profileHeader">
+                     <h3>{{profile_user.first_name}} {{profile_user.last_name}}</h3>
+{%if profile_user.username != user.username%}
+    {%if relation.member_who_added%}
+        {%if relation.active%}
+            You're friends with {{profile_user.first_name}}. (<i><a href="/friend/delete/?username={{profile_user.username}}">Remove</a></i>)
+        {%else%}
+            <a href="/notifications/">Your friend request is pending approval.</a>
+        {%endif%}
+    {%else%}
+
+                    <a href="/friend/add/?username={{profile_user.username}}" class="btn"> Add as Friend</a>
+    {%endif%}
+        
+                     
+
+    
+{%endif%}
+                     <h5>{{member.institution}}</h5>
+                     
+                         <div class="profileDivider"></div>
+                     <h6>Born on {{member.born_on}} </h6>
+                     
+                     
+                     <p>{{member.sex}} </p>
+                     <p>From {{member.town}}{%if member.country%}, {{member.country}} {%endif%}</p>
+                     
+                     </div><!--end profileHeader-->
+                     <br><br>
+                     <div style="margin-left: 45px;text-align:justify;">
+                     {%if member.facebook_handle %}
+                        <p>Facebook: <a href="http://facebook.com/{{member.facebook_handle}}">{{member.facebook_handle}}</a></p>
+                     {%endif%}
+                     {%if member.twitter_handle %}
+                        <p>Twitter: <a href="http://twitter.com/{{member.twitter_handle}}">{{member.twitter_handle}}</a></p>
+                     {%endif%}
+                     
+                     
+                     
+                     
+                         <h6>About Me:</h6>
+                         {{member.about}}
+                         <br>
+                            <h6>Write Something on {{member.user.first_name}}'s wall:</h6>
+                            <form action="." method="POST" class="pofileWallPost" > 
+                            {%csrf_token%}
+                            {{post_add_form.as_p}}
+                            <br>
+                            <div id="buttons">
+                            <!--<a class="btn" href="#"><img src="/public/static/images/addLocIcon_03.png"  />Add Location +</a>-->
+                                <input type="submit" value="Post" class="btn btn-right2">
+                            </div>
+                        </form>
+                     </div>
+                     
+                     <div class="profileBody">
+                     </div>
+                     
+                 </div><!--end profileDetials-->
+                 
+                 <h3>{{member.user.first_name}}'s Activities on Votepedia</h3>
+                 
+                          {% for each_feed in home_feed %}
+                        {% if each_feed.type = 'POST' %}
+                          {% include "user_pages/common_elements/activities_templates/template_post.html" %}
+                        {% endif %}
+                      {% endfor %} 
+                        
+                 
+</div>
+{%endblock%}

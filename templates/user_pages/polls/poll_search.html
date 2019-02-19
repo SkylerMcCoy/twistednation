@@ -1,0 +1,66 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+<div class="pageContent" >
+<form action="." method="post" >
+  <h3>Search for polls</h3>
+  {%csrf_token%}
+  <p>
+    <input type="text" name="search_string" id="searchString">
+  </p>
+  <input type="submit" value="Search" class="btn" >
+</form>
+  {% if searched %}
+    
+    <h3>Search Results</h3>
+  {% if polls %}
+    {% for poll in polls  %}
+  
+<div class="individualFeed">
+      <div class="dividerLight">
+      </div><!--end dividerLight-->
+      <div class="displayPic">  
+      <a href="/profile/">
+      <img src="/pp/{{poll.member.photo}}">
+          </a>
+      </div><!--end displayPic-->
+    <div class="time">
+        <p>{{poll.timestamp}}</p>
+      </div><!--end time-->
+    
+<div id="createPoll">
+<p><strong><a href="/profile/{{poll.member.user.username}}">{{poll.member.user.first_name}} {{poll.member.user.last_name}}</a></strong></p>
+</div>
+
+      
+    
+
+      
+      <div style="clear:both; margin: 20px 0 0 5px; ">
+  
+  
+    <a href="/polls/{{poll.id}}/">
+      <h4>{{poll.title|truncatewords_html:5}}</h4>
+      <br>
+      <p>{{poll.description|truncatewords_html:8}}</p>
+    </a>
+
+      </div>
+    
+
+      </div>
+      
+      
+  {% endfor %}
+  {% endif %}
+  
+  {% endif %}
+  
+</div>
+<div>
+    
+
+</div>
+{%endblock%}

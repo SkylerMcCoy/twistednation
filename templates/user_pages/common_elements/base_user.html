@@ -1,0 +1,350 @@
+		
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <!--[if IE 7]>
+          <link rel="stylesheet" href="{{STATIC_URL}}css/ie7.css" type="text/css" />
+        <![endif]-->
+        <!--[if IE 8]>
+          <link rel="stylesheet" href="{{STATIC_URL}}css/ie8.css" type="text/css" />
+        <![endif]-->
+
+
+    <link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css"  />
+    <link rel="stylesheet" href="{{STATIC_URL}}css/overcast/jquery-ui-1.10.2.custom.min.css" type="text/css"  />
+    <link href='http://fonts.googleapis.com/css?family=Exo:400,900' rel='stylesheet' type='text/css'>
+    <script src="{{STATIC_URL}}js/tiny_mce/tiny_mce.js" type="text/javascript" charset="utf-8"></script>
+    <title>{% block title %}Welcome{% endblock %} | Votepedia - Political Social Network</title>
+</head>
+
+<body>
+    <div class="mainContainer">
+        <div class="container">
+            <div id="wrap">
+                {% include "user_pages/common_elements/widget_header.html" %} 
+                <!-- ##sideBar## -->   
+                <div class="span2">
+
+{%if user.is_active%}                                       
+                     <div id="displayPic">
+                         <a href="/profile/"><img src="{{MEDIA_URL}}{{user.members.photo}}" alt="dp" /></a>
+                         
+
+                     </div><!--end displayPic-->
+                    {% include "user_pages/common_elements/widget_nav_left_side.html" %}
+{%endif%}
+                </div><!--end span2-->
+                 <!-- ## Main Content Area## -->
+                 <!--[if IE]>
+                  <div class="span10" style="margin:5px 0px 0px 5px;">
+                <![endif]-->
+                 <div class="span10" style="margin-top:1px;">
+                   
+                    <div id="commonContent">
+                    {%block page_content%}
+                    {%endblock%}
+                    </div>   
+                
+                </div><!--end span10-->
+                    <!-- ##Ad Space## -->
+                
+                    <div id="adSpace">
+                         <h3>Ad Space</h3>
+                    </div><!--end adSpace-->    
+                {% include "user_pages/common_elements/widget_footer.html" %}
+
+            </div><!--end wrap-->
+        </div><!--end container-->
+        
+                
+    </div><!--end mainContainer-->
+<script src="{{STATIC_URL}}js/jquery.js" ></script>
+<script src="{{STATIC_URL}}js/bootstrap.min.js" > </script>
+<script src="{{STATIC_URL}}js/jquery-ui-1.10.2.custom.min.js" type="text/javascript"></script>
+
+
+<!--##for toggling show/hide
+
+<!-- for toggling tabs--->
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show');
+    $( ".datepicker" ).datepicker();
+  })
+</script>
+
+
+<!--for comments show/hide toggle-->
+<script type="text/javascript">
+ 	// Cache a reference to the hidden content.
+  var hiddenContent = $( "div.commentSpace" );
+
+		// Bind to the Read More link to toggle the
+		$( "a.viewComments" ).click(
+			function( event ){
+
+				// Cancel the default event (this isn't a real link).
+				event.preventDefault();
+
+				// Check to see if the content is visible.
+				if (hiddenContent.is( ":visible" )){
+
+					// Hide it slowly.
+					hiddenContent.slideUp( 1000 );
+
+				} else {
+
+					// Show it slowly.
+					hiddenContent.slideDown( 1000 );
+             }
+         }
+         );
+        </script>
+<script type="text/javascript" >
+  $(document).ready(function(){
+    console.log('page loaded')
+    $('a.c_postVote').click(function() {
+        var url = $(this).attr('href');
+        console.log(url);
+        click_obj = $(this);$(this)
+            
+        $.getJSON(url, function(data) {
+          if(data.already_voted == 1) {
+            alert("You've already voted for this status.")
+          } else {
+            //alert(' Up no. : '+data.upvotes_number+' Down no. : '+data.downvotes_number)
+            click_obj.parent('.contentIcons').children().find('.c_postUpVote').text(data.upvotes_number);
+            click_obj.parent('.contentIcons').children().find('.c_postDownVote').html(data.downvotes_number);
+          }
+          console.log(data.status)
+        }); 
+        return false;
+
+    });
+    $('.commentForm').submit(function() {
+      if ($(this).children('input').val() != '') {
+          url = $(this).attr('action');
+          formElement = $(this);
+          console.log(url);
+          $.post(url, $(this).serialize(),  function(data) {
+              console.log(data);
+              if (data.status != 0) {
+                formElement.parents('.individualFeed').children('.existingComments').append(data);
+                commentsNumber = formElement.parents('.individualFeed').children().find('.commentsNumber').text();
+                commentsNumber++;
+                formElement.parents('.individualFeed').children().find('.commentsNumber').text(commentsNumber);
+                formElement.children('input').val('')
+              }
+           }
+          );
+
+      } else {
+        alert('Please enter a comment');
+      }
+
+          return false;
+    });
+    $(".viewComments").click(function(){
+      url = $(this).attr('href');
+      clickedElement = $(this);
+        $.get(url,  function(data) {
+              console.log(data);
+                clickedElement.parents('.individualFeed').children('.existingComments').html('');
+                clickedElement.parents('.individualFeed').children('.existingComments').append(data);
+                commentsNumber = clickedElement.parents('.individualFeed').children().find('.commentBox').length;
+                clickedElement.parents('.individualFeed').children().find('.commentsNumber').text(commentsNumber);
+
+           }
+          );
+    });
+    $('.pinPost').click(function(){
+        console.log('Pinned post click');
+        url = $(this).attr('href');
+        clickedElement = $(this);
+        clickedElement.text('Processing..');
+        $.getJSON(url,  function(data) {
+              if(data.status==1) {
+                if (data.pinned == 1) {
+                  //alert('The post has been succesfully pinned.');
+                  clickedElement.removeClass('pinPost_active').text('Unpin this.').addClass('pinPost_disable');
+                  
+                } else {
+                  //alert('Item has been succesfully removed.');
+                  clickedElement.removeClass('pinPost_disable').text('Pin this.').addClass('pinPost_active');
+                }
+              } else {
+                alert('Error Occured');
+              }
+           }
+          );
+
+        return false;
+    });
+    /*-----Messages------*/
+    $('.sendMessageForm').submit(function() {
+        $('.sendMessageTextArea').focus();
+      if($('.sendMessageTextArea').val() == '') {
+        return false;
+      }
+      console.log($(this).serialize())
+      post_url = $(this).attr('action');
+      console.log(post_url);
+      $.post(post_url, $(this).serialize(), function(data) {
+         $('#recentConversations').append(data);
+          $('.sendMessageTextArea').val('');
+          no_messages = $('.messagesPage #recentConversations .commentBox').length;
+          div_height = $('.messagesPage #recentConversations .commentBox').height() * no_messages * 2 ;
+
+          
+          $('.messagesPage #recentConversations').animate({ 
+             'scrollTop': div_height,
+           }, 1400);
+       });
+      return false;
+    });
+    $('#checkForNewMsgs').click(function(){
+      console.log('clicked');
+        $.get($(this).attr('href'), function(data) {
+        if (data!='') {
+             $('#recentConversations').append(data);
+             console.log('---------Data received starts here');
+             console.log(data);
+             console.log('---------Data received ends here');
+              no_messages = $('.messagesPage #recentConversations .commentBox').length;
+              div_height = $('.messagesPage #recentConversations .commentBox').height() * no_messages * 2 ;
+
+              
+              $('.messagesPage #recentConversations').animate({ 
+                 'scrollTop': div_height,
+               }, 1400);
+          } else {
+            console.log('No new messages');
+          }
+
+
+       });
+        return false;
+    });
+    setInterval(function() {
+      
+      $('#checkForNewMsgs').click();
+    }, 3000);
+    var window_height = $(window).height();
+    $('.messagesPage #recentConversations').css({
+      'height': (window_height-270),
+    });
+    $('.contactsList').css({
+      'height': (window_height-170),
+    });
+
+    no_messages = $('.messagesPage #recentConversations .commentBox').length;
+    div_height = $('.messagesPage #recentConversations .commentBox').height() * no_messages * 2 ;
+
+    
+    $('.messagesPage #recentConversations').animate({ 
+       'scrollTop': div_height,
+     }, 1400);
+    //realtime notifications
+    getRealTimeNotifications()
+    setInterval(function() {
+      getRealTimeNotifications();
+
+    }, 5000);
+    function getRealTimeNotifications() {
+      $.getJSON('/realtime/',  function(data) {
+              var frndRqst = $('#notifyFriendRequests p').text();
+              var newMsg = $('#notifyNewMessages p').text();
+              $('#notifyFriendRequests p').text(data.requests_no);
+              $('#notifyNewMessages p').text(data.senders_no);
+              if(data.requests_no == 0) {
+                  $('#notifyFriendRequests').removeClass('notifActive').addClass('notifDisable');
+              } else{
+                $('#notifyFriendRequests').removeClass('notifDisable').addClass('notifActive');
+              }
+              if(data.senders_no == 0) {
+                  $('#notifyNewMessages').removeClass('notifActive').addClass('notifDisable');
+              } else {
+                $('#notifyNewMessages').removeClass('notifDisable').addClass('notifActive'); 
+              }
+           }
+      );
+    }
+
+    /*-----Vote--*/
+    $(document).on('click', '.choiceVoteButton', function() {
+      var clickedElement = $(this);
+      clickedElement.text('Wait');
+        graphOuter =  clickedElement.parents('.graphOuter');
+        console.log('graphOuter', graphOuter);
+      $.get(clickedElement.attr('href'), function(data) {
+        console.log(data);
+        graphOuter.html(data);
+        graphOuter.children().find('.bar').each(function() {
+          var width = $(this).attr('data-percent')
+          $(this).animate({
+            width: width+'%',
+          },500);
+        });
+       });
+      console.log('Vote button clicked');
+      return false;
+    });
+    $('.bar').each(function() {
+      var width = $(this).attr('data-percent')
+      $(this).animate({
+        width: width+'%',
+      },500);
+    });
+    /*---------Create Poll------------*/
+    $('.pollCreateWrapControl').click(function() {
+      $(this).fadeOut(function() {
+        $('.pollCreateWrap').slideDown();
+      });
+      return false;
+    });
+
+  });
+
+
+
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+$(function() {
+  var input = document.createElement("input");
+    if(('placeholder' in input)==false) { 
+    $('[placeholder]').focus(function() {
+      var i = $(this);
+      if(i.val() == i.attr('placeholder')) {
+        i.val('').removeClass('placeholder');
+        if(i.hasClass('password')) {
+          i.removeClass('password');
+          this.type='password';
+        }     
+      }
+    }).blur(function() {
+      var i = $(this);  
+      if(i.val() == '' || i.val() == i.attr('placeholder')) {
+        if(this.type=='password') {
+          i.addClass('password');
+          this.type='text';
+        }
+        i.addClass('placeholder').val(i.attr('placeholder'));
+      }
+    }).blur().parents('form').submit(function() {
+      $(this).find('[placeholder]').each(function() {
+        var i = $(this);
+        if(i.val() == i.attr('placeholder'))
+          i.val('');
+      })
+    });
+  }
+});
+/* ]]> */
+</script>
+
+    </body>
+    </html>

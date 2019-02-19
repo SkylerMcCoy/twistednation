@@ -1,0 +1,58 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+<div class="pageContent" >
+    
+    <h3>Trending Polls</h3>
+  {% if polls %}
+    {% for poll in polls  %}
+  
+<div class="individualFeed">
+      <div class="dividerLight">
+      </div><!--end dividerLight-->
+      <div class="displayPic">  
+      <a href="/profile/">
+      <img src="/pp/{{poll.member.photo}}">
+          </a>
+      </div><!--end displayPic-->
+    <div class="time">
+        <p>{{poll.timestamp}}</p>
+      </div><!--end time-->
+    
+<div id="createPoll">
+<p><strong><a href="/profile/{{poll.member.user.username}}">{{poll.member.user.first_name}} {{poll.member.user.last_name}}</a></strong></p>
+</div>
+
+      
+    
+
+      
+      <div style="clear:both; margin: 20px 0 0 5px; ">
+  
+  
+    <a href="/polls/{{poll.id}}/">
+      <h4>{{poll.title|truncatewords_html:5}}</h4>
+        {{poll.choice_votes_no}} people have participated in this poll.
+      <br>
+      <br>
+      {{poll.description|truncatewords_html:8}}
+    </a>
+
+      </div>
+    
+
+      </div>
+      
+      
+  {% endfor %}
+  {% endif %}
+  
+  
+</div>
+<div>
+    
+
+</div>
+{%endblock%}

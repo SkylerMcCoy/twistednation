@@ -1,0 +1,23 @@
+<h3>Viewing history</h3>
+<br/>
+{%for hist in history %}
+<br/>
+TYPE:{{hist.item_type}}
+<br/>
+BY:{{hist.user}}
+<br/>
+ITEM_ID:{{hist.item_id}}
+<br/>
+------
+{% endfor %}
+<h3>Detailed view</h3>
+<br/>
+{% for singleobj in histobjects %}
+{% if singleobj == Debate %}
+{{ singleobj.topic}}<br/>
+{{ singleobj.created_by}}<br/>
+{% endif %}
+
+----------
+<br/>
+{% endfor %}

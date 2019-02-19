@@ -1,0 +1,34 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+<div class="pageContent" >
+  <h3>{{poll.title}}</h3>
+  <a href="/profile/{{poll.member.user.username}}"><i>Created by {{poll.member.user.first_name}} {{poll.member.user.last_name}}</i></a>
+  <p>{{poll.description}}</p>
+  
+	  {% if choices_list %}
+		  <div class="graphOuter">
+			{% include "user_pages/polls/bar_graph.html" %}
+		</div>
+	  {% endif %}
+  {% if poll.member = user.members %}
+	  
+  <h5>Add a new option to this poll</h5>
+  	<form action="." method="post" >
+  		{%csrf_token%}
+  		{{choice_form.as_p}}
+  		<input type="submit" class="btn"  value="Add Choice to the Poll">
+  	</form>
+  {% endif %}
+  
+	 
+  
+  
+</div>
+<div>
+    
+
+</div>
+{%endblock%}

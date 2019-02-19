@@ -1,0 +1,31 @@
+{% extends "user_pages/home/base_home.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+<div class="pageContent">
+    <h3>Notifications</h3>
+    <h4 style="margin-left:30px;">Friend requests</h4>
+    {% for related_member in  pending_requests%}
+         <div class="individualFeed" style="overflow:hidden; display:block !important; width:100%; padding: 5px;" >
+         	<div class="friendNotifBlock">
+            <a href="/profile/{{related_member.user.username}}">
+                <div class="displayPic">
+                    <img src="/pp/{{related_member.member_who_added.photo}}" style="height:100%; width: 100%;" >
+                </div><!--end displayPic-->
+            </a>
+            <p>
+                <strong><a href="/profile/{{related_member.member_who_added.user.username}}">{{related_member.member_who_added.user.first_name}} {{related_member.member_who_added.user.last_name}}</a></strong>
+{%if related_member.member_who_added.institution%} of <strong>{{related_member.member_who_added.institution}}</strong>{%endif%}
+			<br>
+            (<a href="/friend/accept/?username={{related_member.member_who_added.user.username}}" class="" ><i>Accept</i></a>, <a href="/friend/delete/?username={{related_member.member_who_added.user.username}}&page=notifications"><i>Delete</i></a>)
+            </p>
+            </div>
+            </div>
+    
+    		
+       
+    {% endfor %}
+    
+</div>
+{%endblock%}

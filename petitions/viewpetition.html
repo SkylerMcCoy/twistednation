@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title>Petition | View petition</title>
+</head>
+<body>
+	{%load url from future %}
+	{% if pet %}
+	<h2>{{pet.title}}</h2>
+	{%endif%}
+	<h5>Created by:{{pet.user}}<br>Date created:{{pet.timestamp}}</h5>
+	<p>{{pet.content}}</p>
+	<h5>Targeting:{{pet.target}}</h5>
+	<p>Number of signatures expected:{{pet.target_num}}<br>
+		Number of people signed:{{pet.current_num}}</p>
+	<p>Story about this petition:{{pet.stories}}</p>
+	<a href="signed/{{ pet.id }}">Sign this petition</a>
+</body>
+</html>

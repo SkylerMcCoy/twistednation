@@ -1,0 +1,30 @@
+{% extends "user_pages/common_elements/activities_templates/template_container.html" %}
+
+
+{%block template_user_name%}
+<div id="createPoll">
+<p><strong><a href="/profile/{{each_feed.owner_member.user.username}}">{{each_feed.owner_member.user.first_name}} {{each_feed.owner_member.user.last_name}}</a></strong> created a new Poll <strong><a href="/polls/{{each_feed.parent_activity.id}}">{{each_feed.parent_activity.title}}</a></strong>.</p>
+</div>
+{%endblock%}
+
+{%block template_content%}
+	 
+	 <div class="graphOuter">
+	 	
+<dl style="width: 520px;">
+{% for choice in each_feed.choices_list %}
+<dt>{{choice.choice.choice_name}} {% if choice.voted %}(You have currently voted for this){% endif %} </dt>
+<dd>
+<a href="/poll/{{choice.choice.poll.id}}/{{choice.choice.id}}/select/" class="btn choiceVoteButton"{% if choice.voted %}style="opacity:0.3;"{% endif %}>Vote</a>
+<span class="barWrap" ><div class="bar" style="width: 0%; " data-percent="{{choice.percentage}}"  >{{choice.choice.votes_number}}</div></span>
+</dd>
+{% endfor %}
+</dl>
+
+
+	</div>
+<br>
+
+{%endblock%}
+
+

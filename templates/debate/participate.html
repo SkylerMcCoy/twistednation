@@ -1,0 +1,26 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user}}'s Home
+{%endblock%}
+{%block page_content%}
+{%include "user_pages/common_elements/widget_nav_top_debate.html"%}
+                    
+                    <!--##individual contents##-->
+                     <div class="tab-content">
+                     {%block home_content%}
+                     {%endblock%}
+                      
+  {%load url from future %}
+  
+  
+<br />
+<br />
+<form action="/debate/participate/{{ deb }}/" method="post"> {% csrf_token %}
+	{% if form.errors %}<p>Error found</p>
+	{% endif %}
+	{{form.as_p}}
+	<input type="submit" value=">>> Participate <<<" class="btn"/>
+</form>
+                 
+
+{%endblock%}

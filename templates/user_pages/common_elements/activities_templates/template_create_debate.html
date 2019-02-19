@@ -1,0 +1,14 @@
+{% extends "user_pages/common_elements/activities_templates/template_container.html" %}
+
+
+{%block template_user_name%}
+<div id="createPoll">
+<p><strong><a href="/profile/{{each_feed.parent_activity.created_by.user.username}}">{{each_feed.parent_activity.created_by.user.first_name}} {{each_feed.parent_activity.created_by.user.last_name}}</a></strong> created a new Debate <strong><a href="/debate/{{each_feed.parent_activity.id}}">{{each_feed.parent_activity.topic}}</a></strong>.</p>
+</div>
+{%endblock%}
+{%block template_content%}
+{%endblock%}
+{%block template_icons%}
+{%endblock%}
+{%block template_comment_box%}
+{%endblock%}

@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title>Album | View album</title>
+</head>
+<body>
+	{%load url from future %}
+	{% if album %}
+	<h2>{{album.name}}</h2>
+	{% endif %}
+	<h5>Date created:{{album.timestamp}}</h5>
+	{% if pics %}
+	{% for pic in pics %}
+	<br><br>
+	{% if pic.desc != None %}
+	{{ pic.desc }}
+	<br>
+	{% endif %}
+	{{ pic.filename }}
+	{% endfor %}
+	{% endif %}
+	<br><br>
+	<h4>Upload new photo</h4>
+	<form action="/albumlist/{{ album.id }}" method="post" enctype="multipart/form-data">{% csrf_token %}
+		{{form}}<br>
+		<input type="Submit" value="Upload"/>
+	</form>
+
+</body>
+</html>

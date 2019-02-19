@@ -1,0 +1,41 @@
+{% extends "user_pages/common_elements/base_user.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+<div class="pageContent" >
+  <form action="." method="post" id="blogEditForm" >
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Save" class="btn" >
+  </form>
+</div>
+<div>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/tinyeditor.css" type="text/css"  />
+    <script src="{{STATIC_URL}}js/tiny.editor.packed.js"></script>
+    <script>
+    var editor = new TINY.editor.edit('editor', {
+      id: 'tinyeditor',
+      width: 700,
+      height: 400,
+      cssclass: 'tinyeditor',
+      controlclass: 'tinyeditor-control',
+      rowclass: 'tinyeditor-header',
+      dividerclass: 'tinyeditor-divider',
+      controls: ['bold', 'italic', 'underline', 'strikethrough', '|', 'subscript', 'superscript', '|',
+        'orderedlist', 'unorderedlist', '|', 'outdent', 'indent', '|', 'leftalign',
+        'centeralign', 'rightalign', 'blockjustify', '|', 'unformat', '|', 'undo', 'redo', 'n',
+        'font', 'size', 'style', '|'],
+      footer: true,
+      fonts: ['Verdana','Arial','Georgia','Trebuchet MS'],
+      xhtml: true,
+      cssfile: 'custom.css',
+      bodyid: 'editor',
+      footerclass: 'tinyeditor-footer',
+      toggle: {text: 'source', activetext: 'wysiwyg', cssclass: 'toggle'},
+      resize: {cssclass: 'resize'}
+    });
+  </script>
+
+</div>
+{%endblock%}

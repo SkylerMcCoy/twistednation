@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title>Debate | Participate debate</title>
+</head>
+<body>
+	<h1>Topic: {{ debate.topic }} </h1>
+	<h2>Created by: {{debate.created_by}}</h2>
+	<h3>Round Questions:<br>
+		First:	{{debate.roundquestion1}}<br>
+		Second:	{{debate.roundquestion2}}<br>
+		Third:	{{debate.roundquestion3}}</h3>
+	<table border="1" cellpadding="10" width="100%">
+		<tr>
+			<th width="6%">Stand:</th>
+			<th width="47%">For</th>
+			<th width="47%">Against</th>
+		</tr>
+		<tr>
+			<th>Users:</th>
+			<td>
+				{% if usersfor %}
+				{% for user in usersfor %}
+				{{ user.name }},
+				{% endfor %}
+				{% endif %}
+			</td>
+			<td>				
+				{% if usersagainst %}
+				{% for user in usersagainst %}
+				{{ user.name }},
+				{% endfor %}
+				{% endif %}
+			</td>
+		</tr>
+	</table>
+		<div>
+			<div class="forargument" align="left">
+		{% if argfor %}
+		{% for argument in argfor %}
+		{{ argument.user_questioning }}: {{ argument.question}}
+		{% endfor %}
+		{% endif %}
+		testing
+			</div>
+		<div class="againstarguemnt" align="right">
+		{% if argagainst %}
+		{% for argument in argagainst %}
+		{{ argument.user_questioning }}: {{ argument.question}}
+		{% endfor %}
+		{% endif %}
+		nothing
+		</div>	
+</div>
+<form action="/debate/start/{{ deb }}/" method="post"> {% csrf_token %}
+	{% if form.errors %}<p>Error found</p>
+	{% endif %}
+	{{form.as_p}}
+
+</form>
+</body>
+</html>

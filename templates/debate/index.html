@@ -1,0 +1,47 @@
+<html>
+<head>
+	<title>Debate | Index</title>
+</head>
+<body>
+<h1 style="color:red;">Invalid form submission</h1>
+<h1>{{user}}</h1>
+<h2>{{user.id}}</h2>
+<h2>Invited Debate List</h2>
+{% if debate_list %}
+{%for debate in debate_list%}
+	<p>
+		<a href="{% url debate.views.viewdeb debate.id %}">{{debate.topic}}</a>
+	</p>
+
+{% endfor %}
+{% else %}
+	<p>
+		No debates available
+	</p>
+{% endif %}
+<h2>Participating Debate List</h2>
+{% if part_deb_list %}
+{%for debate in part_deb_list%}
+	<p>
+		<a href="{% url debate.views.viewdeb debate.id %}">{{debate.topic}}</a>
+	</p>
+
+{% endfor %}
+{% else %}
+	<p>
+		No debates available
+	</p>
+{% endif %}
+<h3>
+	Create new Debate
+</h3>
+<form action="/debate/" method="post"> {% csrf_token %}
+	{% if dform.errors %}<p>Error found</p>
+	{% endif %}
+	{{dform.as_p}}
+	<input type="submit" value="Next step >>>"/>
+</form>
+
+<a href ="/logout/" >Logout</a>
+</body>
+</html>

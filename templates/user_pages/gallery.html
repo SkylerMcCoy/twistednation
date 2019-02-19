@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css"  />
+    <link href='http://fonts.googleapis.com/css?family=Exo:400,900' rel='stylesheet' type='text/css'>
+    <title>{% block title %}Welcome{% endblock %} | Votepedia - Political Social Network</title>
+</head>
+        <!-- ## Main Content Area## -->
+        <div class="span10">
+        	<div id="commonContent">
+            	<div id="subNav">
+                	<ul class="nav nav-tabs">
+                    	<li	class="active"><a href="#photoTab" class="subNavActive" data-toggle="tab" class="active">Photos</a></li>
+                        <li><a href="#videoTab" data-toggle="tab">Videos</a></li>
+                    </ul>
+                    
+                    </div><!--end subNav-->
+                    <!--##individual contents##-->
+                     <div class="tab-content">
+                      <div class="tab-pane active" id="photoTab">
+                      	<h3>Photos</h3>
+                        <form  action="/albumlist/" method="post">  {% csrf_token %}
+                                   {{form}}                   
+                                <button type="submit" class="btn">New Album +</button><br \><br \>
+                                </form>
+                                <a class="btn">Edit Albums</a>	<br \> <br \>                                
+                                
+                                <!--end galleryTopButtons-->
+                                                        
+                            <div class="galleryContentBox">
+                            	
+                                <h4>Your Photo Albums</h4>
+                                {% if albumlist %}
+                                {%for album in albumlist%}
+                                    <p>
+                                        <a href= "{% url upload.views.viewalbum album.id %}">{{album.name}}</a>
+                                    </p>
+
+                                {% endfor %}
+                                {% else %}
+                                    <p>
+                                        No albums available
+                                    </p>
+                                {% endif %}
+                                <div class="individualAlbum">
+                                	<div class="stack">
+                                	<img src="{{STATIC_URL}}images/381513_10150672604322576_13848807575_12134861_27314117_n.jpg"  /><br /><br />
+                                    <a href="">Album 1: this is the title</a>
+                                    </div>
+                                </div><!--end individualAlbum-->
+                                
+                                <div class="individualAlbum">
+                                	<div class="stack">
+                                	<img src="{{STATIC_URL}}images/380960_10150446173528973_581978972_10526423_966421628_n.jpg"  /><br /><br />
+                                    <a href="">Album 2</a>
+                                    </div>
+                                </div><!--end individualAlbum-->
+                                
+                                <div class="individualAlbum">
+                                	<div class="stack">
+                                	<img src="{{STATIC_URL}}images/displayPicXLarge_03.png"  /><br /><br />
+                                    <a href="">Album 2</a>
+                                    </div>
+                                </div><!--end individualAlbum-->
+                                                                
+                            </div><!--end galleryContent-->
+                            
+                            
+                            <div class="galleryContentBox">
+                            	
+                                <h4>Other Photos of you</h4>
+                                <div class="individualAlbum">
+                                	<div class="stack">
+                                	<img src="{{STATIC_URL}}images/dp_other_01_03.jpg"  /><br /><br />
+                                    <a href="">Album 1</a>
+                                    </div>
+                                </div><!--end individualAlbum-->
+                                
+                                <div class="individualAlbum">
+                                	<div class="stack">
+                                	<img src="{{STATIC_URL}}images/dp_other_03_03.jpg"  /><br /><br />
+                                    <a href="">Album 2</a>
+                                    </div>
+                                </div><!--end individualAlbum-->
+                                
+                                <div class="individualAlbum">
+                                	<div class="stack">
+                                	<img src="{{STATIC_URL}}images/dp_other_02_03.jpg"  /><br /><br />
+                                    <a href="">Album 3</a>
+                                    </div>
+                                </div><!--end individualAlbum-->
+                                
+                                <div class="individualAlbum">
+                                	<div class="stack">
+                                	<img src="{{STATIC_URL}}images/dp_other_04_03.jpg"  /><br /><br />
+                                    <a href="">Album 4</a>
+                                    </div>
+                                </div><!--end individualAlbum-->
+                                
+                                <div class="individualAlbum">
+                                	<div class="stack">
+                                	<img src="{{STATIC_URL}}images/dp_other_05_03.jpg"  /><br /><br />
+                                    <a href="">Album 5</a>
+                                    </div>
+                                </div><!--end individualAlbum-->
+                                
+                            </div><!--end galleryContent-->
+                            
+                            
+                      </div>
+                      
+                          
+                            </div><!--end galleryContent-->
+                            
+                      </div>
+                     
+                 	</div>  
+                   
+                 
+            </div><!--end content-->
+        </div><!--end span10-->
+        
+        <!-- ##Ad Space## -->
+        <div class="span1">
+        	<div id="adSpace">
+            	<h3>Ad Space</h3>
+            </div><!--end adSpace-->
+        </div><!--end span2-->
+    	
+
+
+<script src="js/jquery.js" ></script>
+<script src="js/bootstrap.min.js" > </script>
+<!-- ##for toggling child li## -->
+<script type="text/javascript">
+
+
+$(function () {
+    $('.reveal').click(function() {
+        $(this).children('ul').slideToggle();
+		$(this).toggleClass('revealSwitch');
+	    });
+	
+	
+	
+    $('.reveal a').click(function(event) {
+        event.stopPropagation();
+    });
+});
+
+</script>
+
+
+<!--##for toggling show/hide##-->
+
+
+<!-- for tabs--->
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
+</body>
+</html>

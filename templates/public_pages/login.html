@@ -1,0 +1,110 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css"  />
+<link href='http://fonts.googleapis.com/css?family=Exo:400,900' rel='stylesheet' type='text/css'>
+<title>Votepedia</title>
+</head>
+
+<body style="background:#e6edef;">
+<div class="mainContainer">
+<div class="container">
+	    
+	<div id="wrap">
+    	<div id="header">
+                <img src="{{STATIC_URL}}images/vp.png" alt="" style="width:176px; margin-left:-2px;">
+    	</div><!--end header-->
+    	
+ 		<div id="userInfoName">
+        	<div class="btn-group">
+        	<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="usrName"><h5>Welcome new user</h5></a>
+            		  <ul class="dropdown-menu">
+                      	<img src="{{STATIC_URL}}images/arrowWhiteUp_03.png"  />
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Create New Account</a></li>
+                        <li class="dividerNav"></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li class="dividerNav"></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Credits</a></li>
+                      </ul>
+             </div>    
+        </div><!--end userInfoName-->    
+        <div id="splashContent">
+        <div id="signup">
+            <h4>Register</h4>
+            <form action="/register/" method="POST" >
+                {%csrf_token%}
+                {% for field in register_form %}
+                    {{ field.label_tag }}
+                    {{ field }}
+                    <br />
+                    {{ field.help_text }}
+                {% endfor %}
+                <br />
+                <input type="submit" value="Register" class="btn" />
+            </form>
+        </div>
+        
+        <div id="login">
+            	<h4>Login</h4>
+					<form action="." method="POST" >
+						{%csrf_token%}
+						{{login_form.as_p}}
+						<input type="submit" value="Login" class="btn" />
+					</form>
+            <h2>Welcome to votepdeia</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+        </div>
+        </div>
+        
+        <!-- ##Footer## -->
+        <div id="footer" class="spanfooter">
+        	<!--
+            <div class="divider">
+            </div><!--end divider-->
+            
+            <p>Voice Of The Electorate. © 2012. All Rights Reserved.</p>
+            
+	            <a href="#">About</a>
+                <a href="#"> Help</a>
+                <a href="#"> Terms</a>
+                <a href="#"> Privacy</a>
+           	<h1>votepedia</h1>     
+            
+        </div><!--end footer-->
+        
+    </div><!--end wrap-->
+
+</div><!--end container-->
+</p><!--end mainContainer-->
+
+<script src="{{STATIC_URL}}js/jquery.js" ></script>
+<script src="{{STATIC_URL}}js/bootstrap.min.js" > </script>
+<!-- ##for toggling child li## -->
+
+<script type="text/javascript">
+ $(document).ready(function() {
+
+  $("#nav ul ul" ).hide();
+
+
+$("#nav ul li").click(function() {
+$(this).next().slideToggle();
+});
+});
+</script>
+
+<!--##for toggling show/hide
+
+<!-- for tabs--->
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
+</body>
+</html>

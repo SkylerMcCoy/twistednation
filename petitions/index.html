@@ -1,0 +1,32 @@
+<html>
+<head>
+	<title>Petition | Index</title>
+</head>
+<body>
+<h1>{{user}}</h1>
+<h2>{{user.id}}</h2>
+{% if petition_list %}
+{%for petition in petition_list%}
+	<p>
+		<a href="{% url petitions.views.viewpet petition.id %}">{{petition.title}}</a>
+	</p>
+
+{% endfor %}
+{% else %}
+	<p>
+		No petitions available
+	</p>
+{% endif %}
+<h3>
+	Create new Petition
+</h3>
+<form action="/petitions/" method="post"> {% csrf_token %}
+	{% if form.errors %}<p>Error found</p>
+	{% endif %}
+	{{form.as_p}}
+	<input type="submit" value="Save"/>
+</form>
+
+<a href ="/logout/" >Logout</a>
+</body>
+</html>

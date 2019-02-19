@@ -1,0 +1,22 @@
+{% extends "user_pages/home/base_home.html" %}
+{%block title%}
+{{user.first_name}}'s Home
+{%endblock%}
+{%block page_content%}
+<div class="pageContent">
+  <form action="." method="POST" enctype="multipart/form-data"   >
+    {%csrf_token%}
+    {%for f in form%}
+      {{f.errors}}
+      {{f.label}}
+      {%if f.field.required%}
+       (Required)
+      {%endif%}
+      <p class="c_formElementHolder">
+      {{f}}
+      </p>
+    {%endfor%}
+    <input type="submit" value="Update Profile" class="btn" >
+  </form>
+</div>
+{%endblock%}
