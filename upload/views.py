@@ -9,7 +9,7 @@ from history.models import History
 from upload.forms import CreateAlbumForm
 from django.contrib.auth.decorators import login_required
 import random, string,datetime
-import Image
+from PIL import Image
 import os,errno
 from django.core.files.storage import default_storage
 from django.conf import settings
