@@ -1,0 +1,5 @@
+Django==1.4.22
+django-grappelli==2.4.12
+django-tinymce=1.5.4
+django_extensions==1.0.3
+pillow==1.7.8
