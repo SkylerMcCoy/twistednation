@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'vote.views.home', name='home'),
     # url(r'^vote/', include('vote.foo.urls')),
 
+    url(r'^public/static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
