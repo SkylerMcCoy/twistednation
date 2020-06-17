@@ -106,7 +106,7 @@ background: -moz-linear-gradient(left, rgb(242,247,248) 1%, rgb(255,255,255) 62%
 /*background: linear-gradient(to right, rgb(242,247,248) 1%,rgb(255,255,255) 62%,rgb(255,255,255) 100%); /* W3C */
 /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f7f8', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
 /**/
-  background: linear-gradient(to right, #F2F7F8 1%, #be1e2f 62%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+  background: linear-gradient(to right, #F2F7F8 1%, #0077b3 62%, #FFFFFF 100%) repeat scroll 0 0 transparent;
 }
 a {
   color: #022c62;
