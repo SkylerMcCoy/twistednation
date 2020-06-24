@@ -175,9 +175,12 @@ a:hover {
   float: right;
 }
 .container {
+  background-image: (url(/images/twBGladyliberty.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
   margin-right: auto;
   margin-left: auto;
-  *zoom: 1;
+  
 }
 .container:before,
 .container:after {
@@ -970,6 +973,8 @@ input[type="submit"].btn::-moz-focus-inner {
 }
 .mainContainer{
 background:url(../images/BG_02.png) no-repeat;
+background-size: cover;
+width: 100%;
 }
 #wrap{
 	width:1100px;
@@ -1079,6 +1084,7 @@ background:url(../images/BG_02.png) no-repeat;
 	padding-left:20px;
 }
 #splashContent #signup{
+  display: none;
 	width:320px;
 	padding-right:10px;
 	float:left;
@@ -1785,7 +1791,7 @@ padding:0px 5px 0px 10px;
 	width:720px;
 }
 .spanfooter{
-	width:700px;
+  display: none;
 }
 #footer{
 	padding:40px 0px 0px 20px;
