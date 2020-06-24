@@ -1,7 +1,7 @@
 <div class="commentBox" style="{% if message.member1.user.username == user.username %}float:right;{%else%}float:left;{% endif %} padding: 5px; corner-radius: 5px; background-color:#eef; " >
 	
 <div>
-<a href="/profile/{{message.member1.user.username}}" style="{% if message.member1.user.username == user.username %}float:right;{%else%}float:left;{% endif %}"><img class="commentDP" src="/p/{{message.member1.photo}}"></a>
+<a href="/profile/{{message.member1.user.username}}" style="{% if message.member1.user.username == user.username %}float:right;{%else%}float:left;{% endif %}"><img class="commentDP" src="/pp/{{message.member1.photo}}"></a>
 <strong style="{% if message.member1.user.username == user.username %}float:right;margin-right: 10px;{%else%}float:left;margin-left: 10px;{% endif %}" ><a href="/profile/{{message.member1.user.username}}">{{message.member1.user.first_name}} {{message.member1.user.last_name}}</a></strong>
 <span style="{% if message.member1.user.username == user.username %}float:left;{%else%}float:right;{% endif %} color:#999;" >{{message.timestamp}}</span>
 </div>

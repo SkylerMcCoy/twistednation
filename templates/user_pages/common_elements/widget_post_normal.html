@@ -3,7 +3,7 @@
                                             </div><!--end dividerLight-->
                                             <div class="displayPic">  
                                             <a href="/profile/{{post.member.user.username}}">
-                                            <img src="/p/{{post.member.photo}}">
+                                            <img src="/pp/{{post.member.photo}}">
                                                 </a>
                                             </div><!--end displayPic-->
                                             <p style="margin-left:65px;"><strong><a href="/profile/{{post.member.user.username}}">{{post.member.user.first_name}} {{post.member.user.last_name}}</a></strong></p>
@@ -22,7 +22,7 @@
                                                  <div class="existingComments">
                                                  </div>
                                             <div class="addCommentBox">
-                                                <img class="commentDP" src="/p/{{owner_member.photo}}">
+                                                <img class="commentDP" src="/pp/{{owner_member.photo}}">
                                                 <form action="/post/{{post.id}}/comment/action/?action=new" class="commentForm">
                                                 <input type="text"  placeholder="Write a comment..." name="content" style="width:464px; margin: 0 0 0 5px" >
                                                 <input type="submit" style="display:none" >
