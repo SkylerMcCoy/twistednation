@@ -9,7 +9,7 @@ class UploadImageForm(forms.ModelForm):
 		model=Photo
 		exclude=('album','filename','timestamp','upvotes_number','downvotes_number','comments_number','upvoted_by','downvoted_by',)
 	file=forms.ImageField()
-	fields=('file','desc')
+	fields=('file')
 
 
 class CreateAlbumForm(forms.ModelForm):
