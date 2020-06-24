@@ -99,6 +99,7 @@ textarea {
 }
 
 body {
+  background-color: #000;
   overflow: -moz-hidden-unscrollable;
     margin: 0;
   font-size: 14px;
@@ -263,8 +264,10 @@ a:hover {
   background:url(https://lavenderonthesanjuanriver.com/wp-content/uploads/2020/06/twBGladyliberty.jpg) no-repeat;
   background-position: center;
   background-size: contain;
+  background-color: #000;
+  position: fixed;
   width: 100%;
-  min-height: 580px;
+  min-height: 700px;
   }
 
   .container:before,
