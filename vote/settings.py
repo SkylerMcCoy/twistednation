@@ -6,7 +6,7 @@ import dj_database_url
 
 SITE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
