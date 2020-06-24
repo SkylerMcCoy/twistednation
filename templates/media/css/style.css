@@ -178,6 +178,9 @@ a:hover {
   float: right;
 }
 .container {
+  background-image: (url(/images/twBGladyliberty.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
   margin-right: auto;
   margin-left: auto;
   *zoom: 1;
@@ -972,7 +975,9 @@ input[type="submit"].btn::-moz-focus-inner {
 	overflow:hidden;
 }
 .mainContainer{
-background:url(../images/BG_02.png) repeat-x;
+  background:url(../images/BG_02.png) no-repeat;
+  background-size: cover;
+  width: 100%;
 }
 #wrap{
 	width:1100px;
