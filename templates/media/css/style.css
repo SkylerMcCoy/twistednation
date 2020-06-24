@@ -181,12 +181,12 @@ a:hover {
   background-image: (url(/images/twBGladyliberty.jpg) no-repeat;
   background-position: center;
   background-size: cover;
-  margin-right: auto;
-  margin-left: auto;
-  *zoom: 1;
-}
+  }
 .container:before,
 .container:after {
+  background-image: (url(/images/twBGladyliberty.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
   display: table;
   line-height: 0;
   content: "";
@@ -1799,6 +1799,7 @@ padding:0px 5px 0px 10px;
 	width:720px;
 }
 .spanfooter{
+  display: none;
 	width:700px;
 }
 #footer{
