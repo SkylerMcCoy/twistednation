@@ -89,27 +89,6 @@ body {
   margin: 0;
   font-size: 14px;
   line-height: 20px;
-  color: #333333;
-  
-  /*
-background: -webkit-gradient(linear, left top, right top, from(#f2f7f8), to(#fff)); /* for webkit browsers 
-background: -moz-linear-gradient(left,  #f2f7f8,  #fff); /* for firefox 3.6+ 
-	/* For Internet Explorer 5.5 - 7 
-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#f2f7f8, endColorStr=#FFFFFFFF, GradientType=1);
-/* For Internet Explorer 8 
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#f2f7f8, endColorstr=#FFFFFFFF, GradientType=1)";
-*/
-/*
-background: rgb(242,247,248); /* Old browsers *//*
-background: -moz-linear-gradient(left, rgb(242,247,248) 1%, rgb(255,255,255) 62%, rgb(255,255,255) 100%); /* FF3.6+ */
-/*background: -webkit-gradient(linear, left top, right top, color-stop(1%,rgb(242,247,248)), color-stop(62%,rgb(255,255,255)), color-stop(100%,rgb(255,255,255))); /* Chrome,Safari4+ */
-/*background: -webkit-linear-gradient(left, rgb(242,247,248) 1%,rgb(255,255,255) 62%,rgb(255,255,255) 100%); /* Chrome10+,Safari5.1+ */
-/*background: -o-linear-gradient(left, rgb(242,247,248) 1%,rgb(255,255,255) 62%,rgb(255,255,255) 100%); /* Opera 11.10+ */
-/*background: -ms-linear-gradient(left, rgb(242,247,248) 1%,rgb(255,255,255) 62%,rgb(255,255,255) 100%); /* IE10+ */
-/*background: linear-gradient(to right, rgb(242,247,248) 1%,rgb(255,255,255) 62%,rgb(255,255,255) 100%); /* W3C */
-/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f7f8', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
-/**/
-  background: linear-gradient(to right, #F2F7F8 1%, #0077b3 62%, #FFFFFF 100%) repeat scroll 0 0 transparent;
 }
 a {
   color: #022c62;
@@ -178,6 +157,7 @@ a:hover {
   float: right;
 }
 .container {
+  background-image: url(https://lavenderonthesanjuanriver.com/wp-content/uploads/2020/06/twBGladyliberty.jpg);
   margin-right: auto;
   margin-left: auto;
   *zoom: 1;
