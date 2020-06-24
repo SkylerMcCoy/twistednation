@@ -5,9 +5,6 @@ body.login {
 }
 
 .login #container {
-    background-image: (url(/images/twBGladyliberty.jpg) no-repeat;
-    background-position: center;
-    background-size: cover;
     background: white;
     border: 1px solid #ccc;
     width: 28em;

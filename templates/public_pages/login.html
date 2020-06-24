@@ -8,17 +8,48 @@
 <title>TwistedNation</title>
 </head>
 
-<body>
+<body style="background:#e6edef;">
 <div class="mainContainer">
 <div class="container">
 	    
 	<div id="wrap">
     	<div id="header">
-                <img src="https://i.imgur.com/10U5ww6.png" alt="" style="width:176px; margin-left:-2px;">
+                <img src="{{STATIC_URL}}images/tw.png" alt="" style="width:176px; margin-left:-2px;">
     	</div><!--end header-->
     	
  		<div id="userInfoName">
-      <div id="login">
+        	<div class="btn-group">
+        	<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="usrName"><h5>Welcome new user</h5></a>
+            		  <ul class="dropdown-menu">
+                      	<img src="{{STATIC_URL}}images/arrowWhiteUp_03.png"  />
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Create New Account</a></li>
+                        <li class="dividerNav"></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li class="dividerNav"></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Credits</a></li>
+                      </ul>
+             </div>    
+        </div><!--end userInfoName-->    
+        <div id="splashContent">
+        <div id="signup">
+            <h4>Register</h4>
+            <form action="/register/" method="POST" >
+                {%csrf_token%}
+                {% for field in register_form %}
+                    {{ field.label_tag }}
+                    {{ field }}
+                    <br />
+                    {{ field.help_text }}
+                {% endfor %}
+                <br />
+                <input type="submit" value="Register" class="btn" />
+            </form>
+        </div>
+        
+        <div id="login">
             	<h4>Login</h4>
 					<form action="." method="POST" >
 						{%csrf_token%}
@@ -26,9 +57,23 @@
 						<input type="submit" value="Login" class="btn" />
 					</form>
           </div>
-       </div>
+        </div>
         
-       
+        <!-- ##Footer## -->
+        <div id="footer" class="spanfooter">
+        	<!--
+            <div class="divider">
+            </div><!--end divider-->
+            
+            <p>Voice Of The Electorate. © 2012. All Rights Reserved.</p>
+            
+	            <a href="#">About</a>
+                <a href="#"> Help</a>
+                <a href="#"> Terms</a>
+                <a href="#"> Privacy</a>
+           	<h1>twistednation</h1>     
+            
+        </div><!--end footer-->
         
     </div><!--end wrap-->
 
