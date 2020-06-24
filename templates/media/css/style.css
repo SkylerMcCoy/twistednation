@@ -168,7 +168,7 @@ a:hover {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 1280px;
+  width: 100%;
 }
 
 .span12 {
@@ -287,9 +287,10 @@ a:hover {
 }
 
 .container {
-  background-image: (url(/images/twBGladyliberty.jpg) no-repeat;
-      background-position: center;
-      background-size: cover;
+  background:url(https://i.imgur.com/10U5ww6.png) no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
   }
 
   .container:before,
@@ -1219,15 +1220,15 @@ a:hover {
     }
 
     .mainContainer {
-      background:url(../images/BG_02.png) no-repeat;
+      background:url(https://i.imgur.com/10U5ww6.png) no-repeat;
       background-size: cover;
       width: 100%;
     }
 
     #wrap {
-      width:1100px;
-      margin:0 auto 0 auto;
-    }
+      background:url(https://i.imgur.com/10U5ww6.png) no-repeat;
+      background-size: cover;
+      width: 100%;
 
     /*------- Header -------*/
     #header {
