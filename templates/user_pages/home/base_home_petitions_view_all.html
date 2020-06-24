@@ -17,7 +17,7 @@
                                     <div id="signPetition">
                                         <h4><strong>Sign</strong> this Petition</h4>
                                         
-                                        <img src="/pp/{{user.members.photo}}"  />  <!--profile picture of the current user-->
+                                        <img src="/p/{{user.members.photo}}"  />  <!--profile picture of the current user-->
                                         <h5><a href="/profile/{{user.username}}">{{user.members}}</a></h5><br/> <br/>
                                         
                                           <form action="/petitions/{{ pet.id }}/signed" method="post"> {% csrf_token %}

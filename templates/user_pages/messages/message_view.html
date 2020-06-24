@@ -17,7 +17,7 @@
                             <a href="/messages/{{friend.user.username}}/"  class="individyalFeedWrap" >     
                                 <div class="individualFeed"  >
                                     <div class="displayPic" >  
-                                        <img src="/pp/{{friend.photo}}" style="" >
+                                        <img src="/p/{{friend.photo}}" style="" >
                                     </div><!--end displayPic-->
                                     <p>{{friend.user.first_name}} {{friend.user.last_name}}</p>
                                     <div style="clear:both;" ></div>
@@ -43,7 +43,7 @@
                                 <div class="commentBox" style="{% if message.member1.user.username == user.username %}float:right;{%else%}float:left;{% endif %} padding: 5px; corner-radius: 5px; background-color:#eef; " >
   
 <div  >
-<a href="/messages/{{message.member1.user.username}}" style="{% if message.member1.user.username == user.username %}float:right;{%else%}float:left;{% endif %}"><img class="commentDP" src="/pp/{{message.member1.photo}}"></a>
+<a href="/messages/{{message.member1.user.username}}" style="{% if message.member1.user.username == user.username %}float:right;{%else%}float:left;{% endif %}"><img class="commentDP" src="/p/{{message.member1.photo}}"></a>
 <strong style="{% if message.member1.user.username == user.username %}float:right;margin-right: 10px;{%else%}float:left;margin-left: 10px;{% endif %}" ><a href="/messages/{{message.member1.user.username}}">{{message.member1.user.first_name}} {{message.member1.user.last_name}}</a></strong>
 <span style="{% if message.member1.user.username == user.username %}float:left;{%else%}float:right;{% endif %} color:#999;" >{{message.timestamp}}</span>
 </div>

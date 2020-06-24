@@ -35,7 +35,7 @@ polls/trending/
 polls/
 polls/(?P<poll_id>.+?)/
 poll/(?P<poll_id>.+?)/(?P<choice_id>.+?)/select/
-pp/(?P<path>.*)
+p/(?P<path>.*)
 public/static/(?P<path>.*)
 petitions/?
 petitions/create/?
