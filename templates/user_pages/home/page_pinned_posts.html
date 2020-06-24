@@ -2,7 +2,7 @@
 {%block home_content%}
  <div class="tab-pane active" id="news">
                       <p><h3>Pinned Posts</h3></p>
-                      <p><h4>Post You have Pinned Show Here:</h3></p>                   
+                      <p><h4>Post You have Pinned Show Here</h3></p>                   
     {% for each_feed in home_feed %}
       {% if each_feed.post_type = 'POST' %}
         {% include "user_pages/common_elements/activities_templates/template_post.html" %}
