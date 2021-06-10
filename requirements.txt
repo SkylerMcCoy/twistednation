@@ -1,4 +1,4 @@
-Django==1.4.22
+Django==2.2.24
 django-grappelli==2.4.12
 django-tinymce==1.5.4
 django_extensions==1.0.3
